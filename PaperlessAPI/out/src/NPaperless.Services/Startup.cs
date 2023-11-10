@@ -25,6 +25,9 @@ using NPaperless.Services.Filters;
 using NPaperless.Services.OpenApi;
 using NPaperless.Services.Formatters;
 using Microsoft.Extensions.Logging;
+using NPaperless.Services.Data;
+using Npgsql.EntityFrameworkCore.PostgreSQL;
+using Microsoft.EntityFrameworkCore;
 
 namespace NPaperless.Services
 {
@@ -75,6 +78,11 @@ namespace NPaperless.Services
             });
 
             */
+
+            services.AddDbContext<DataContext>(options =>
+            {
+                options.UseNpgsql(Configuration.GetConnectionString("postgres"));
+            });
             services.AddAutoMapper(typeof(Program).Assembly);
             services.AddCors(); // Make sure you call this previous to AddMvc
 

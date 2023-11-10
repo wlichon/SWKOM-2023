@@ -26,6 +26,7 @@ namespace NPaperless.Services.DTOs
     [DataContract]
     public partial class CreateStoragePathRequest 
     {
+        public string Id { get; set; }
         /// <summary>
         /// Gets or Sets Name
         /// </summary>
