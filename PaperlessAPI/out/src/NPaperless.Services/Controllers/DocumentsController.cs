@@ -3,7 +3,7 @@ using FizzWare.NBuilder;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.Text.Json;
-using Mock_Server.Models;
+using NPaperless.Services.Models;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Linq;
@@ -11,7 +11,7 @@ using System.Collections.Generic;
 using Microsoft.AspNetCore.Http;
 using System.IO;
 
-namespace Mock_Server.Controllers;
+namespace NPaperless.Services.Controllers;
 
 [ApiController]
 [Route("/api/documents/")]

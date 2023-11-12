@@ -28,6 +28,7 @@ using Microsoft.Extensions.Logging;
 using NPaperless.Services.Data;
 using Npgsql.EntityFrameworkCore.PostgreSQL;
 using Microsoft.EntityFrameworkCore;
+using NPaperless.Services.Services.CorrespondentsRepo;
 
 namespace NPaperless.Services
 {
@@ -56,6 +57,8 @@ namespace NPaperless.Services
         /// <param name="services"></param>
         public void ConfigureServices(IServiceCollection services)
         {
+            
+
             /*
             services.AddLogging(loggingBuilder =>
             {
@@ -82,9 +85,12 @@ namespace NPaperless.Services
             services.AddDbContext<DataContext>(options =>
             {
                 options.UseNpgsql(Configuration.GetConnectionString("postgres"));
-            });
+            }, ServiceLifetime.Scoped);
             services.AddAutoMapper(typeof(Program).Assembly);
             services.AddCors(); // Make sure you call this previous to AddMvc
+
+
+            services.AddScoped<ICorrespondentRepo, CorrespondentRepo>();
 
             services
                 // Don't need the full MVC stack for an API, see https://andrewlock.net/comparing-startup-between-the-asp-net-core-3-templates/

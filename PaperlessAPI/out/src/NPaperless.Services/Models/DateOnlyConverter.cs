@@ -2,7 +2,7 @@ using System;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
-namespace Mock_Server.Models;
+namespace NPaperless.Services.Models;
 
 public class DateOnlyConverter : JsonConverter<DateTime>
 {

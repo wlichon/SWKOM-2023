@@ -2,9 +2,9 @@ using System.Linq;
 using System.Text.Json;
 using FizzWare.NBuilder;
 using Microsoft.AspNetCore.Mvc;
-using Mock_Server.Models;
+using NPaperless.Services.Models;
 
-namespace Mock_Server.Controllers;
+namespace NPaperless.Services.Controllers;
 
 [ApiController]
 [Route("/api/saved_views/")]

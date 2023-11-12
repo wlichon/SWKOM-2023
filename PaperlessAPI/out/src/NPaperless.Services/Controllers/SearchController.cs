@@ -3,8 +3,7 @@ using FizzWare.NBuilder;
 using Microsoft.Extensions.Logging;
 using System.Linq;
 
-namespace Mock_Server.Controllers;
-
+namespace NPaperless.Services.Controllers;
 [ApiController]
 [Route("/api/search/")]
 public partial class SearchController : ControllerBase

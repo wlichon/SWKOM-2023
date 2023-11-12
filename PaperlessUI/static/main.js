@@ -15644,9 +15644,12 @@ globalThis.$localize = Object.assign(globalThis.$localize || {}, { locale: "en-U
         getMatching(o) {
           if (o.matching_algorithm == src_app_data_matching_model__WEBPACK_IMPORTED_MODULE_0__.MATCH_AUTO) {
             return "Automatic";
-          } else if (o.match && o.match.length > 0) {
+          } 
+          /*else if (o.match && o.match.length > 0) {
             return `${src_app_data_matching_model__WEBPACK_IMPORTED_MODULE_0__.MATCHING_ALGORITHMS.find(a => a.id == o.matching_algorithm).shortName}: ${o.match}`;
-          } else {
+          } 
+          */
+          else {
             return '-';
           }
         }

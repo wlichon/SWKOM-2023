@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
+namespace NPaperless.Services.Models;
 
-namespace Mock_Server.Models;
 
 public partial class ListResponse<T>
 {

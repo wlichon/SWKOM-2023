@@ -1,11 +1,14 @@
 using Microsoft.AspNetCore.Mvc;
 using FizzWare.NBuilder;
 using AutoMapper;
-using Mock_Server.Models;
+using NPaperless.Services.Models;
 using Microsoft.Extensions.Logging;
 using System;
+using NPaperless.Services.Services.CorrespondentsRepo;
+using System.Threading.Tasks;
+using Swashbuckle.AspNetCore.Annotations;
 
-namespace Mock_Server.Controllers;
+namespace NPaperless.Services.Controllers;
 
 [ApiController]
 [Route("/api/correspondents/")]
@@ -13,12 +16,13 @@ namespace Mock_Server.Controllers;
 public class CorrespondentsController : ControllerBase
 {
     private ILogger<CorrespondentsController> _logger;
-    private readonly IMapper _mapper;
+    
+    private readonly ICorrespondentRepo _correspondentRepo;
 
-    public CorrespondentsController(IMapper mapper, ILogger<CorrespondentsController> logger)
+    public CorrespondentsController(ILogger<CorrespondentsController> logger, ICorrespondentRepo correspondentRepo)
     {
-        _mapper = mapper;
         _logger = logger;
+        _correspondentRepo = correspondentRepo;
     }
 
     [HttpOptions]
@@ -29,42 +33,48 @@ public class CorrespondentsController : ControllerBase
     }
 
     [HttpGet(Name = "GetCorrespondents")]
-    public IActionResult GetCorrespondents()
+    public async Task<IActionResult> GetCorrespondents()
     {
-        Random r = new Random();
-        int count = 7;
-        return this.Ok(new ListResponse<Correspondent>()
+        var corrs =  await _correspondentRepo.GetAll();
+        return Ok(new ListResponse<Correspondent>()
         {
-            Count = count,
+            Count = corrs.Count,
             Next = null,
             Previous = null,
-            Results = Builder<Correspondent>.CreateListOfSize(count)
-                .All()
-                .With(p => p.MatchingAlgorithm = r.Next(1, 6))
-                .Build()
+            Results = corrs
         });
+        //return Ok(corrs);
     }
 
     [HttpPost(Name = "CreateCorrespondent")]
-    public IActionResult CreateCorrespondent([FromBody] NewCorrespondent correspondent)
+    public async Task<IActionResult> CreateCorrespondent(CorrespondentDto correspondent)
     {
-        var corr = _mapper.Map<Correspondent>(correspondent);
 
-        corr.Id = 1;
-        corr.Slug = "foo";
+        var corr = await _correspondentRepo.CreateOne(correspondent);
+        
+        return Ok(corr);
+    }
 
-        return Created($"/api/correspondents/{corr.Id}/", corr);
+    [HttpOptions("{id:int}")]
+    [ApiExplorerSettings(IgnoreApi = true)]
+    public IActionResult OptionsId()
+    {
+        return Ok();
     }
 
     [HttpPut("{id:int}", Name = "UpdateCorrespondent")]
-    public IActionResult UpdateCorrespondent([FromRoute] int id, [FromBody] Correspondent correspondent)
+    public async Task<IActionResult> UpdateCorrespondent([FromRoute] int id, [FromBody] CorrespondentDto correspondent)
     {
-        return Ok(correspondent);
+        var corr = await _correspondentRepo.UpdateOne(id, correspondent);
+
+        return Ok(corr);
     }
 
     [HttpDelete("{id:int}", Name = "DeleteCorrespondent")]
-    public IActionResult DeleteCorrespondent([FromRoute] int id)
+    public async Task<IActionResult> DeleteCorrespondent([FromRoute] int id)
     {
-        return NoContent();
+        var corr = await _correspondentRepo.DeleteOne(id);
+
+        return Ok(corr);
     }
 }

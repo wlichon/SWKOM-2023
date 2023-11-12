@@ -1,8 +1,7 @@
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
 
-namespace Mock_Server.Models;
-
+namespace NPaperless.Services.Models;
 public partial class Statistics
 {
     [JsonPropertyName("documents_total")]

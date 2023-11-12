@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using NPaperless.Services.DTOs;
+using NPaperless.Services.Models;
 
 namespace NPaperless.Services
 {
@@ -7,8 +7,8 @@ namespace NPaperless.Services
     {
         public AutoMapperProfile()
         {
-            CreateMap<GetSavedViews200Response, GetSavedViewsResponseDto>();
-            CreateMap<GetSavedViews200ResponseResultsInner, GetSavedViewsResponseResultsInnerDto>();
+            CreateMap<CorrespondentDto, Correspondent>();
+            //CreateMap<GetSavedViews200ResponseResultsInner, GetSavedViewsResponseResultsInnerDto>();
         }
     }
 }

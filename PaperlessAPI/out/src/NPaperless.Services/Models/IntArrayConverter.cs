@@ -2,7 +2,7 @@ using System;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
-namespace Mock_Server.Models;
+namespace NPaperless.Services.Models;
 public class IntArrayConverter : JsonConverter<int[]>
 {
     public override int[] Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)

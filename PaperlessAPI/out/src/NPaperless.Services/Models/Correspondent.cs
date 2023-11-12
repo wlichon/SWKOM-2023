@@ -1,42 +1,42 @@
 using System;
 using System.Text.Json.Serialization;
 
-namespace Mock_Server.Models;
+namespace NPaperless.Services.Models;
 
-public partial class NewCorrespondent
+public partial class CorrespondentDto
 {
     [JsonPropertyName("name")]
-    public string Name
+    public string name
     {
         get; set;
     }
 
     [JsonPropertyName("match")]
-    public string Match
+    public string match
     {
         get; set;
     }
 
     [JsonPropertyName("matching_algorithm")]
-    public long MatchingAlgorithm
+    public long matching_algorithm
     {
         get; set;
     }
 
     [JsonPropertyName("is_insensitive")]
-    public bool IsInsensitive
+    public bool is_insensitive
     {
         get; set;
     }
 
     [JsonPropertyName("document_count")]
-    public long DocumentCount
+    public long document_count
     {
         get; set;
     }
 
     [JsonPropertyName("last_correspondence")]
-    public DateTime LastCorrespondence
+    public DateTime last_correspondence
     {
         get; set;
     }
@@ -45,50 +45,80 @@ public partial class NewCorrespondent
 public partial class Correspondent
 {
     [JsonPropertyName("id")]
-    public long Id
+    public long id
     {
         get; set;
     }
 
+
+   
+    private string _slug = "Default";
+    
     [JsonPropertyName("slug")]
-    public string Slug
+    
+    public string slug
     {
-        get; set;
+        get { return _slug; }
+        set { _slug = value; }
     }
+
 
     [JsonPropertyName("name")]
-    public string Name
+    public string name
     {
         get; set;
     }
 
     [JsonPropertyName("match")]
-    public string Match
+    public string match
     {
         get; set;
     }
 
     [JsonPropertyName("matching_algorithm")]
-    public long MatchingAlgorithm
+    public long matching_algorithm
     {
         get; set;
     }
 
     [JsonPropertyName("is_insensitive")]
-    public bool IsInsensitive
+    public bool is_insensitive
     {
         get; set;
     }
 
     [JsonPropertyName("document_count")]
-    public long DocumentCount
+    public long document_count
     {
         get; set;
     }
 
+    /*
+    private DateTime _lastCorrespondence = DateTime.Now;
+
     [JsonPropertyName("last_correspondence")]
-    public DateTime LastCorrespondence
+    public DateTime last_correspondence
     {
-        get; set;
+        get { return _lastCorrespondence; }
+        set { _lastCorrespondence = value != DateTime.MinValue ? value : _lastCorrespondence; }
+    }
+
+    private DateTime _lastCorrespondence = DateTime.Now;
+
+    [JsonPropertyName("last_correspondence")]
+    public DateTime last_correspondence
+    {
+        get { return _lastCorrespondence; }
+        set { 
+            if(value != DateTime.MinValue)
+                _lastCorrespondence = value;
+        }
+    }
+
+    */
+    [JsonPropertyName("last_correspondence")]
+    public DateTime last_correspondence
+    {
+        get;set;
     }
 }

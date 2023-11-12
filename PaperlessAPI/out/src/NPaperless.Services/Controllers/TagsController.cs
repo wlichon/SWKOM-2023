@@ -1,11 +1,11 @@
 using Microsoft.AspNetCore.Mvc;
 using FizzWare.NBuilder;
 using AutoMapper;
-using Mock_Server.Models;
+using NPaperless.Services.Models;
 using Microsoft.Extensions.Logging;
 using System;
 
-namespace Mock_Server.Controllers;
+namespace NPaperless.Services.Controllers;
 
 [ApiController]
 [Route("/api/tags/")]

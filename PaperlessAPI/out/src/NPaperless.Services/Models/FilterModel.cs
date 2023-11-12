@@ -2,7 +2,7 @@
 using System.Text.Json.Serialization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Mock_Server.Models;
+namespace NPaperless.Services.Models;
 
 public class DocumentsFilterModel : GenericFilterModel
 {

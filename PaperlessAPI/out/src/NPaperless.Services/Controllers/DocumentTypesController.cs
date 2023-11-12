@@ -2,10 +2,10 @@ using AutoMapper;
 using FizzWare.NBuilder;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using Mock_Server.Models;
+using NPaperless.Services.Models;
 using System;
 
-namespace Mock_Server.Controllers;
+namespace NPaperless.Services.Controllers;
 
 [ApiController]
 [Route("/api/document_types/")]

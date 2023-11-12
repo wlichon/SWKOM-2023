@@ -1,4 +1,4 @@
-namespace Mock_Server.Controllers;
+namespace NPaperless.Services.Controllers;
 
 public static class ColorExtensions
 {

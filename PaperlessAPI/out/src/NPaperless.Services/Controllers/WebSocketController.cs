@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Mock_Server.Controllers;
+namespace NPaperless.Services.Controllers;
 
 public class WebSocketController : ControllerBase
 {

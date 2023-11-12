@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
 
-namespace Mock_Server.Models;
+namespace NPaperless.Services.Models;
 
 public class AckTasksRequest
 {
