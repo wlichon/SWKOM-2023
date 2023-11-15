@@ -10,6 +10,8 @@ using System.Linq;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Http;
 using System.IO;
+using NPaperless.Services.Services.CorrespondentsRepo;
+using NPaperless.Services.Repositories.DocumentsRepos;
 
 namespace NPaperless.Services.Controllers;
 
@@ -18,10 +20,13 @@ namespace NPaperless.Services.Controllers;
 public partial class DocumentsController : ControllerBase
 {
     private ILogger<DocumentsController> _logger;
+    private readonly IDocumentRepo _documentRepo;
 
-    public DocumentsController(ILogger<DocumentsController> logger)
+
+    public DocumentsController(ILogger<DocumentsController> logger, IDocumentRepo documentRepo)
     {
         _logger = logger;
+        _documentRepo = documentRepo;
     }
 
     [HttpOptions]
@@ -32,8 +37,18 @@ public partial class DocumentsController : ControllerBase
     }
 
     [HttpGet(Name = "GetDocuments")]
-    public IActionResult GetDocuments([FromQuery] DocumentsFilterModel filter)
+    public async Task<IActionResult> GetDocuments([FromQuery] DocumentsFilterModel filter)
     {
+        var docs = await _documentRepo.GetAll();
+        return Ok(new ListResponse<Document>()
+        {
+            Count = docs.Count,
+            Next = null,
+            Previous = null,
+            Results = docs
+        });
+
+        /*
         Random r = new Random();
 
         int count = r.Next(1, 20);
@@ -57,6 +72,7 @@ public partial class DocumentsController : ControllerBase
                     .With(p => p.Tags = Enumerable.Range(1, r.Next(1, 4)).Select(u => (uint)u).ToArray())
                 .Build()
         });
+        */
     }
 
     [HttpGet("{id}", Name = "GetDocument")]

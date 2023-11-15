@@ -11,7 +11,8 @@ namespace NPaperless.Services.Data
         }
 
         public DbSet<Correspondent> Correspondents { get; set; }
-        //public DbSet<Document> Documents { get; set; }
+
+        public DbSet<Document> Documents { get; set; }
         //public DbSet<DocumentMetadata> DocumentMetadata { get; set; }
 
         //public DbSet<DocumentType> DocumentTypes { get; set; }

@@ -29,6 +29,7 @@ using NPaperless.Services.Data;
 using Npgsql.EntityFrameworkCore.PostgreSQL;
 using Microsoft.EntityFrameworkCore;
 using NPaperless.Services.Services.CorrespondentsRepo;
+using NPaperless.Services.Repositories.DocumentsRepos;
 
 namespace NPaperless.Services
 {
@@ -91,6 +92,7 @@ namespace NPaperless.Services
 
 
             services.AddScoped<ICorrespondentRepo, CorrespondentRepo>();
+            services.AddScoped<IDocumentRepo, DocumentRepo>();
 
             services
                 // Don't need the full MVC stack for an API, see https://andrewlock.net/comparing-startup-between-the-asp-net-core-3-templates/
