@@ -30,6 +30,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL;
 using Microsoft.EntityFrameworkCore;
 using NPaperless.Services.Services.CorrespondentsRepo;
 using NPaperless.Services.Repositories.DocumentsRepos;
+using AutoMapper;
 
 namespace NPaperless.Services
 {
@@ -87,8 +88,15 @@ namespace NPaperless.Services
             {
                 options.UseNpgsql(Configuration.GetConnectionString("postgres"));
             }, ServiceLifetime.Scoped);
-            services.AddAutoMapper(typeof(Program).Assembly);
-            services.AddCors(); // Make sure you call this previous to AddMvc
+            var mapperConfig = new MapperConfiguration(mc =>
+            {
+                mc.AddProfile(new AutoMapperProfile());
+            });
+
+            IMapper mapper = mapperConfig.CreateMapper();
+            services.AddSingleton(mapper);
+            services.AddMvc();
+            services.AddCors();
 
 
             services.AddScoped<ICorrespondentRepo, CorrespondentRepo>();
@@ -170,7 +178,7 @@ namespace NPaperless.Services
                 })
                 .UseSwaggerUI(c =>
                 {
-                    // set route prefix to openapi, e.g. http://localhost:8080/openapi/index.html
+                    // set route prefix to openapi, e.g. http://localhost:8081/openapi/index.html
                     c.RoutePrefix = "openapi";
                     //TODO: Either use the SwaggerGen generated OpenAPI contract (generated from C# classes)
                     c.SwaggerEndpoint("/openapi/1.0/openapi.json", "Paperless Rest Server");

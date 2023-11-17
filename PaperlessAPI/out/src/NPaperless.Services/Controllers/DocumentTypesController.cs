@@ -14,12 +14,6 @@ public class DocumentTypesController : ControllerBase
     private ILogger<DocumentTypesController> _logger;
     private IMapper _mapper;
 
-    [HttpOptions]
-
-    public IActionResult Options()
-    {
-        return Ok();
-    }
     public DocumentTypesController(IMapper mapper, ILogger<DocumentTypesController> logger)
     {
         _mapper = mapper;

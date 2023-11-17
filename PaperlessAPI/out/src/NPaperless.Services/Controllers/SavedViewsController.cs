@@ -32,11 +32,4 @@ public partial class SavedViewsController : ControllerBase
                         .Build()
         });
     }
-
-    [HttpOptions]
-    public IActionResult Options()
-    {
-        // Return a 200 OK response for CORS preflight requests
-        return Ok();
-    }
 }

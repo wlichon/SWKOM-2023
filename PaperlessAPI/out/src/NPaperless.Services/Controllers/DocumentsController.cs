@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Http;
 using System.IO;
 using NPaperless.Services.Services.CorrespondentsRepo;
 using NPaperless.Services.Repositories.DocumentsRepos;
+using System.Threading.Tasks;
 
 namespace NPaperless.Services.Controllers;
 
@@ -29,17 +30,10 @@ public partial class DocumentsController : ControllerBase
         _documentRepo = documentRepo;
     }
 
-    [HttpOptions]
-
-    public IActionResult Options()
-    {
-        return Ok();
-    }
-
     [HttpGet(Name = "GetDocuments")]
     public async Task<IActionResult> GetDocuments([FromQuery] DocumentsFilterModel filter)
     {
-        var docs = await _documentRepo.GetAll();
+        var docs = await _documentRepo.GetAllDocs();
         return Ok(new ListResponse<Document>()
         {
             Count = docs.Count,
@@ -76,18 +70,11 @@ public partial class DocumentsController : ControllerBase
     }
 
     [HttpGet("{id}", Name = "GetDocument")]
-    public IActionResult GetDocument([FromRoute] uint id)
+    public async Task<IActionResult> GetDocument([FromRoute] uint id)
     {
-        return this.Ok(new Document()
-        {
-            Id = id,
-            Title = "Document " + id,
-            CreatedDate = DateTime.Now,
-            DocumentType = 1,
-            Added = DateTime.Now,
-            Content = "Foo content",
-            Tags = new uint[0]
-        });
+        var doc = await _documentRepo.GetOneDoc(id);
+
+        return Ok(doc);
     }
 
     [HttpGet("{id}/suggestions", Name = "GetDocumentSuggestions")]
@@ -114,36 +101,34 @@ public partial class DocumentsController : ControllerBase
         return this.Ok(JsonSerializer.Deserialize<object>(result));
     }
 
+
     [HttpPut("{id:int}", Name = "UpdateDocument")]
-    public IActionResult UpdateDocument([FromRoute] int id, [FromBody] Document document)
+    public async Task<IActionResult> UpdateDocument([FromRoute] uint id, [FromBody] DocumentDto document)
     {
-        return Ok(document);
+        var updatedDoc = await _documentRepo.UpdateOneDoc(id, document);
+
+        return Ok(updatedDoc);
     }
 
     [HttpDelete("{id:int}", Name = "DeleteDocument")]
-    public IActionResult DeleteDocument([FromRoute] int id)
+    public async Task<IActionResult> DeleteDocument([FromRoute] uint id)
     {
-        return NoContent();
+        var deletedDoc = await _documentRepo.DeleteOneDoc(id);
+
+        return Ok(deletedDoc);
     }
 
+
+
     [HttpPost("post_document", Name = "UploadDocument")]
-    public IActionResult UploadDocument([FromForm] string? title,
-                                        [FromForm] DateTime? created,
-                                        [FromForm(Name = "document_type")] uint? documentType,
-                                        [FromForm] uint[] tags,
-                                        [FromForm] uint? correspondent,
-                                        [FromForm] IEnumerable<IFormFile> document)
+    public async Task<IActionResult> UploadDocument([FromForm] IEnumerable<IFormFile> document)
     {
-        Document doc = new Document()
-        {
-            Id = 1,
-            Title = title,
-            CreatedDate = created.GetValueOrDefault(),
-            DocumentType = documentType.GetValueOrDefault(),
-            Added = DateTime.Now,
-            Content = "Foo content"
-        };
-        return Ok($"/api/documents/{doc.Id}");
+
+
+        DocumentDto doc = new DocumentDto();
+
+        var createdDoc = await _documentRepo.CreateOneDoc(doc);
+        return Ok(createdDoc);
     }
 
 

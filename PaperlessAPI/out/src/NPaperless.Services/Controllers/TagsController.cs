@@ -21,13 +21,6 @@ public class TagsController : ControllerBase
         _logger = logger;
     }
 
-    [HttpOptions]
-
-    public IActionResult Options()
-    {
-        return Ok();
-    }
-
     [HttpGet(Name = "GetTags")]
     public IActionResult GetTags()
     {

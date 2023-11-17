@@ -31,13 +31,6 @@ public class TasksController : ControllerBase
                         .Build());
     }
 
-    [HttpOptions("tasks")]
-    public IActionResult Options()
-    {
-        // Return a 200 OK response for CORS preflight requests
-        return Ok();
-    }
-
     [HttpPost("acknowledge_tasks")]
     public IActionResult AckTasks([FromBody] AckTasksRequest tasks)
     {

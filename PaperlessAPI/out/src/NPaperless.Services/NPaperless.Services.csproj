@@ -30,4 +30,9 @@
     <PackageReference Include="JsonSubTypes" Version="1.8.0" />
     <PackageReference Include="System.Drawing.Common" Version="7.0.0" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\ClassLibrary\NPaperless.Models.csproj" />
+    <ProjectReference Include="..\..\NPaperless.DataAccess.Entities\NPaperless.DataAccess.Entities.csproj" />
+    <ProjectReference Include="..\..\NPaperless.DataAccess.Interfaces\NPaperless.DataAccess.Interfaces.csproj" />
+  </ItemGroup>
 </Project>

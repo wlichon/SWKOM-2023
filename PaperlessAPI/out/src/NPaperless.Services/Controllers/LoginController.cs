@@ -44,13 +44,6 @@ public class LoginController : ControllerBase
         });
     }
 
-    [HttpOptions("statistics")]
-
-    public IActionResult Options()
-    {
-        return Ok();
-    }
-
     [HttpPost("token", Name = "GetToken")]
     public IActionResult GetToken([FromBody] Login info)
     {

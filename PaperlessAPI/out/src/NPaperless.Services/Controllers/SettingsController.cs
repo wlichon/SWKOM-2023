@@ -7,12 +7,6 @@ namespace NPaperless.Services.Controllers;
 [Route("/api/storage_paths/")]
 public partial class StoragePathsController : ControllerBase
 {
-    [HttpOptions]
-
-    public IActionResult Options()
-    {
-        return Ok();
-    }
 
     [HttpGet(Name = "GetStoragePaths")]
     public IActionResult GetStoragePaths()
@@ -34,12 +28,6 @@ public partial class StoragePathsController : ControllerBase
 [Route("/api/logs/")]
 public partial class LogsController : ControllerBase
 {
-    [HttpOptions]
-
-    public IActionResult Options()
-    {
-        return Ok();
-    }
 
     [HttpGet(Name = "GetLogs")]
     public IActionResult GetLogs()
@@ -247,14 +235,6 @@ public partial class SettingsController : ControllerBase
 
     [HttpPost]
     public IActionResult CreateUISettings()
-    {
-        // Return a 200 OK response for CORS preflight requests
-        return Ok();
-    }
-
-
-    [HttpOptions]
-    public IActionResult Options()
     {
         // Return a 200 OK response for CORS preflight requests
         return Ok();

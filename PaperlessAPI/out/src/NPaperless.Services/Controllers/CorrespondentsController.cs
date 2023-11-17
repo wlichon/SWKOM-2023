@@ -25,13 +25,6 @@ public class CorrespondentsController : ControllerBase
         _correspondentRepo = correspondentRepo;
     }
 
-    [HttpOptions]
-
-    public IActionResult Options()
-    {
-        return Ok();
-    }
-
     [HttpGet(Name = "GetCorrespondents")]
     public async Task<IActionResult> GetCorrespondents()
     {
@@ -53,13 +46,6 @@ public class CorrespondentsController : ControllerBase
         var corr = await _correspondentRepo.CreateOne(correspondent);
         
         return Ok(corr);
-    }
-
-    [HttpOptions("{id:int}")]
-    [ApiExplorerSettings(IgnoreApi = true)]
-    public IActionResult OptionsId()
-    {
-        return Ok();
     }
 
     [HttpPut("{id:int}", Name = "UpdateCorrespondent")]

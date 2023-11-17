@@ -63,6 +63,72 @@ namespace NPaperless.Services.Migrations
 
                     b.ToTable("Correspondents");
                 });
+
+            modelBuilder.Entity("NPaperless.Services.Models.Document", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("Relational:JsonPropertyName", "id");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
+
+                    b.Property<DateTime>("Added")
+                        .HasColumnType("timestamp with time zone")
+                        .HasAnnotation("Relational:JsonPropertyName", "added");
+
+                    b.Property<string>("ArchiveSerialNumber")
+                        .HasColumnType("text")
+                        .HasAnnotation("Relational:JsonPropertyName", "archive_serial_number");
+
+                    b.Property<string>("ArchivedFileName")
+                        .HasColumnType("text")
+                        .HasAnnotation("Relational:JsonPropertyName", "archived_file_name");
+
+                    b.Property<string>("Content")
+                        .HasColumnType("text")
+                        .HasAnnotation("Relational:JsonPropertyName", "content");
+
+                    b.Property<long?>("Correspondent")
+                        .HasColumnType("bigint")
+                        .HasAnnotation("Relational:JsonPropertyName", "correspondent");
+
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("timestamp with time zone")
+                        .HasAnnotation("Relational:JsonPropertyName", "created");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("timestamp with time zone")
+                        .HasAnnotation("Relational:JsonPropertyName", "created_date");
+
+                    b.Property<long?>("DocumentType")
+                        .HasColumnType("bigint")
+                        .HasAnnotation("Relational:JsonPropertyName", "document_type");
+
+                    b.Property<DateTime>("Modified")
+                        .HasColumnType("timestamp with time zone")
+                        .HasAnnotation("Relational:JsonPropertyName", "modified");
+
+                    b.Property<string>("OriginalFileName")
+                        .HasColumnType("text")
+                        .HasAnnotation("Relational:JsonPropertyName", "original_file_name");
+
+                    b.Property<long?>("StoragePath")
+                        .HasColumnType("bigint")
+                        .HasAnnotation("Relational:JsonPropertyName", "storage_path");
+
+                    b.Property<long[]>("Tags")
+                        .HasColumnType("bigint[]")
+                        .HasAnnotation("Relational:JsonPropertyName", "tags");
+
+                    b.Property<string>("Title")
+                        .HasColumnType("text")
+                        .HasAnnotation("Relational:JsonPropertyName", "title");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Documents");
+                });
 #pragma warning restore 612, 618
         }
     }

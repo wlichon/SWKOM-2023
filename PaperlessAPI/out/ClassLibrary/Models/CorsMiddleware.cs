@@ -17,6 +17,11 @@ public class CorsMiddleware
         httpContext.Response.Headers.Add("Access-Control-Allow-Credentials", "true");
         httpContext.Response.Headers.Add("Access-Control-Allow-Headers", "Content-Type, X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Date, X-Api-Version, X-File-Name, x-csrftoken");
         httpContext.Response.Headers.Add("Access-Control-Allow-Methods", "POST,GET,PUT,PATCH,DELETE,OPTIONS");
+        if (httpContext.Request.Method == "OPTIONS")
+        {
+            httpContext.Response.StatusCode = 200;
+            return httpContext.Response.WriteAsync("OK");
+        }
         return _next(httpContext);
     }
 }

@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using NPaperless.Services.Data;
+using NPaperless.Services.Migrations;
 using NPaperless.Services.Models;
 using System;
 using System.Collections.Generic;
@@ -20,19 +21,52 @@ namespace NPaperless.Services.Repositories.DocumentsRepos
             _mapper = mapper;
         }
 
-        public async Task<Document> CreateOne(long id)
+        public async Task<Document> CreateOneDoc(DocumentDto document)
         {
-            throw new System.NotImplementedException();
+            var doc = _mapper.Map<Document>(document);
+            _context.Documents.Add(doc);
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            return doc;
+
         }
 
-        public Task<Document> DeleteOne(long id)
+        public async Task<Document> DeleteOneDoc(uint id)
         {
-            throw new System.NotImplementedException();
+            Document doc;
+
+            try
+            {
+                doc = await _context.Documents.FindAsync(id);
+
+                if (doc == null)
+                {
+                    return null;
+                }
+
+                _context.Documents.Remove(doc);
+                await _context.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                
+                throw; 
+            }
+
+            return doc;
         }
 
-        public async Task<List<Document>> GetAll()
+        public async Task<List<Document>> GetAllDocs()
         {
-            List<Document> docs = null;  // Initialize to null or an empty list, depending on your preference.
+            List<Document> docs = null;  
 
             try
             {
@@ -41,21 +75,52 @@ namespace NPaperless.Services.Repositories.DocumentsRepos
             catch (DbUpdateException ex)
             {
                 Console.WriteLine(ex.Message);
-                // Handle the exception or log it as needed.
-                // You might want to throw the exception again if you don't want to suppress it.
+              
             }
 
-            return docs ?? new List<Document>();  // Return the list or an empty list if an exception occurred.
+            return docs ?? new List<Document>(); 
         }
 
-        public Task<Document> GetOne(long id)
+        public async Task<Document> GetOneDoc(uint id)
         {
-            throw new System.NotImplementedException();
+            Document doc;
+
+            try
+            {
+                doc = await _context.Documents.FindAsync(id);
+
+                if (doc == null)
+                {
+                    return null;
+                }
+       
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                throw; 
+            }
+
+            return doc;
         }
 
-        public Task<Document> UpdateOne(long id)
+        public async Task<Document> UpdateOneDoc(uint id, DocumentDto document)
         {
-            throw new System.NotImplementedException();
+            var doc = await _context.Documents.FindAsync(id);
+            if (doc == null)
+            {
+                return null;
+            }
+
+            doc.Correspondent = document.Correspondent;
+            doc.DocumentType = document.DocumentType;
+            doc.Tags = document.Tags;
+            doc.Title = document.Title;
+            doc.Created = document.Created;
+            await _context.SaveChangesAsync();
+
+            return doc;
+
         }
     }
 }

@@ -9,37 +9,37 @@ public partial class CorrespondentDto
     public string name
     {
         get; set;
-    }
+    } = string.Empty;
 
     [JsonPropertyName("match")]
     public string match
     {
         get; set;
-    }
+    } = string.Empty;
 
     [JsonPropertyName("matching_algorithm")]
     public long matching_algorithm
     {
         get; set;
-    }
+    } = 0;
 
     [JsonPropertyName("is_insensitive")]
     public bool is_insensitive
     {
         get; set;
-    }
+    } = false;
 
     [JsonPropertyName("document_count")]
     public long document_count
     {
         get; set;
-    }
+    } = 0;
 
     [JsonPropertyName("last_correspondence")]
     public DateTime last_correspondence
     {
         get; set;
-    }
+    } = DateTime.Now;
 }
 
 public partial class Correspondent
@@ -49,76 +49,48 @@ public partial class Correspondent
     {
         get; set;
     }
-
-
-   
-    private string _slug = "Default";
     
     [JsonPropertyName("slug")]
     
     public string slug
     {
-        get { return _slug; }
-        set { _slug = value; }
-    }
+        get;set;
+    } = string.Empty;
 
 
     [JsonPropertyName("name")]
     public string name
     {
         get; set;
-    }
+    } = string.Empty;
 
     [JsonPropertyName("match")]
     public string match
     {
         get; set;
-    }
+    } = string.Empty;
 
     [JsonPropertyName("matching_algorithm")]
     public long matching_algorithm
     {
         get; set;
-    }
+    } = 0;
 
     [JsonPropertyName("is_insensitive")]
     public bool is_insensitive
     {
         get; set;
-    }
+    } = false;
 
     [JsonPropertyName("document_count")]
     public long document_count
     {
         get; set;
-    }
-
-    /*
-    private DateTime _lastCorrespondence = DateTime.Now;
+    } = 0;
 
     [JsonPropertyName("last_correspondence")]
     public DateTime last_correspondence
     {
-        get { return _lastCorrespondence; }
-        set { _lastCorrespondence = value != DateTime.MinValue ? value : _lastCorrespondence; }
-    }
-
-    private DateTime _lastCorrespondence = DateTime.Now;
-
-    [JsonPropertyName("last_correspondence")]
-    public DateTime last_correspondence
-    {
-        get { return _lastCorrespondence; }
-        set { 
-            if(value != DateTime.MinValue)
-                _lastCorrespondence = value;
-        }
-    }
-
-    */
-    [JsonPropertyName("last_correspondence")]
-    public DateTime last_correspondence
-    {
-        get;set;
-    }
+        get; set;
+    } = DateTime.Now;
 }
