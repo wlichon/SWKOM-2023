@@ -9,12 +9,28 @@ EXPOSE 8081
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS publish
 
 # Copy the code into the container
-WORKDIR /src
+WORKDIR .
 COPY ["src/NPaperless.Services/NPaperless.Services.csproj", "NPaperless.Services/"]
+
+COPY ["ClassLibrary/NPaperless.Models.csproj", "ClassLibrary/"]
+
+COPY ["NPaperless.DataAccess.Entities", "NPaperless.DataAccess.Entities/"]
+
+COPY ["NPaperless.DataAccess.Interfaces", "NPaperless.DataAccess.Interfaces/"]
+
+
+
 
 # NuGet restore
 RUN dotnet restore "NPaperless.Services/NPaperless.Services.csproj"
+RUN dotnet restore "ClassLibrary/NPaperless.Models.csproj"
+RUN dotnet restore "NPaperless.DataAccess.Entities/NPaperless.DataAccess.Entities.csproj"
+RUN dotnet restore "NPaperless.DataAccess.Interfaces/NPaperless.DataAccess.Interfaces.csproj"
+
 COPY ["src/NPaperless.Services/", "NPaperless.Services/"]
+COPY ["ClassLibrary/", "ClassLibrary/"]
+COPY ["NPaperless.DataAccess.Entities/", "NPaperless.DataAccess.Entities/"]
+COPY ["NPaperless.DataAccess.Interfaces/", "NPaperless.DataAccess.Interfaces/"]
 
 RUN dotnet publish "NPaperless.Services/NPaperless.Services.csproj" -c Release -o /app/publish
 

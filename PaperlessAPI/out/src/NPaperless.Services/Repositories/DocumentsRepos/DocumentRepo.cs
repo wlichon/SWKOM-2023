@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using NPaperless.Services.Data;
-using NPaperless.Services.Migrations;
 using NPaperless.Services.Models;
 using System;
 using System.Collections.Generic;
