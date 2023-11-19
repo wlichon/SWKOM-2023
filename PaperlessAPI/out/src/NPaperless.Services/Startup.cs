@@ -31,6 +31,12 @@ using Microsoft.EntityFrameworkCore;
 using NPaperless.Services.Services.CorrespondentsRepo;
 using NPaperless.Services.Repositories.DocumentsRepos;
 using AutoMapper;
+using NPaperless.Services.BusinessLogic;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+using NPaperless.Services.Models;
+using FluentValidation;
+using NPaperless.Services.Validator;
+using Minio;
 
 namespace NPaperless.Services
 {
@@ -59,7 +65,7 @@ namespace NPaperless.Services
         /// <param name="services"></param>
         public void ConfigureServices(IServiceCollection services)
         {
-            
+
 
             /*
             services.AddLogging(loggingBuilder =>
@@ -83,6 +89,20 @@ namespace NPaperless.Services
             });
 
             */
+            /*
+            var endpoint = "localhost:9000";
+            var accessKey = "admin";
+            var secretKey = "password";
+
+            // Add Minio using the default endpoint
+            services.AddMinio(accessKey, secretKey);
+
+            // Add Minio using the custom endpoint and configure additional settings for default MinioClient initialization
+            services.AddMinio(configureClient => configureClient
+                .WithEndpoint(endpoint)
+                .WithCredentials(accessKey, secretKey));
+
+            */
 
             services.AddDbContext<DataContext>(options =>
             {
@@ -101,6 +121,8 @@ namespace NPaperless.Services
 
             services.AddScoped<ICorrespondentRepo, CorrespondentRepo>();
             services.AddScoped<IDocumentRepo, DocumentRepo>();
+            services.AddScoped<IDocumentLogic,  DocumentLogic>();
+            services.AddScoped<IValidator<Document>, DocumentValidator>();
 
             services
                 // Don't need the full MVC stack for an API, see https://andrewlock.net/comparing-startup-between-the-asp-net-core-3-templates/

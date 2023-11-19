@@ -10,11 +10,11 @@ namespace NPaperless.Services.Repositories.DocumentsRepos
 
         public Task<Document> GetOneDoc(uint id);
 
-        public Task<Document> UpdateOneDoc(uint id, DocumentDto document);
+        public Task<Document> UpdateOneDoc(uint id, Document document);
 
         public Task<Document> DeleteOneDoc(uint id);
 
-        public Task<Document> CreateOneDoc(DocumentDto document);
+        public Task<Document> CreateOneDoc(Document document);
 
  
     }

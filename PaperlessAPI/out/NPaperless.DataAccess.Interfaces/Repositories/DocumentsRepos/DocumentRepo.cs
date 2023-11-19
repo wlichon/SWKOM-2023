@@ -12,18 +12,16 @@ namespace NPaperless.Services.Repositories.DocumentsRepos
     {
 
         private DataContext _context;
-        private readonly IMapper _mapper;
 
-        public DocumentRepo(DataContext context, IMapper mapper)
+        public DocumentRepo(DataContext context)
         {
             _context = context;
-            _mapper = mapper;
+  
         }
 
-        public async Task<Document> CreateOneDoc(DocumentDto document)
+        public async Task<Document> CreateOneDoc(Document document)
         {
-            var doc = _mapper.Map<Document>(document);
-            _context.Documents.Add(doc);
+            _context.Documents.Add(document);
 
             try
             {
@@ -33,7 +31,7 @@ namespace NPaperless.Services.Repositories.DocumentsRepos
             {
                 Console.WriteLine(ex.Message);
             }
-            return doc;
+            return document;
 
         }
 
@@ -103,7 +101,7 @@ namespace NPaperless.Services.Repositories.DocumentsRepos
             return doc;
         }
 
-        public async Task<Document> UpdateOneDoc(uint id, DocumentDto document)
+        public async Task<Document> UpdateOneDoc(uint id, Document document)
         {
             var doc = await _context.Documents.FindAsync(id);
             if (doc == null)

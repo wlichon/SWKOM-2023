@@ -18,6 +18,7 @@ COPY ["NPaperless.DataAccess.Entities", "NPaperless.DataAccess.Entities/"]
 
 COPY ["NPaperless.DataAccess.Interfaces", "NPaperless.DataAccess.Interfaces/"]
 
+COPY ["NPaperless.BusinessLogic", "NPaperless.BusinessLogic/"]
 
 
 
@@ -26,11 +27,14 @@ RUN dotnet restore "NPaperless.Services/NPaperless.Services.csproj"
 RUN dotnet restore "ClassLibrary/NPaperless.Models.csproj"
 RUN dotnet restore "NPaperless.DataAccess.Entities/NPaperless.DataAccess.Entities.csproj"
 RUN dotnet restore "NPaperless.DataAccess.Interfaces/NPaperless.DataAccess.Interfaces.csproj"
+RUN dotnet restore "NPaperless.BusinessLogic/NPaperless.BusinessLogic.csproj"
+
 
 COPY ["src/NPaperless.Services/", "NPaperless.Services/"]
 COPY ["ClassLibrary/", "ClassLibrary/"]
 COPY ["NPaperless.DataAccess.Entities/", "NPaperless.DataAccess.Entities/"]
 COPY ["NPaperless.DataAccess.Interfaces/", "NPaperless.DataAccess.Interfaces/"]
+COPY ["NPaperless.BusinessLogic/", "NPaperless.BusinessLogic/"]
 
 RUN dotnet publish "NPaperless.Services/NPaperless.Services.csproj" -c Release -o /app/publish
 

@@ -17,7 +17,7 @@ public class CorrespondentRepo : ICorrespondentRepo
         _context = context;
         _mapper = mapper;
     }
-    public async Task<Correspondent> CreateOne(CorrespondentDto correspondent)
+    public async Task<Correspondent> CreateOne(Correspondent correspondent)
     {
         var corr = _mapper.Map<Correspondent>(correspondent);
         _context.Correspondents.Add(corr);
@@ -53,7 +53,7 @@ public class CorrespondentRepo : ICorrespondentRepo
 
     }
 
-    public async Task<Correspondent> UpdateOne(long id, CorrespondentDto correspondent)
+    public async Task<Correspondent> UpdateOne(long id, Correspondent correspondent)
     {
         var corr = await _context.Correspondents.FindAsync(id);
         if(corr == null)

@@ -13,6 +13,8 @@ using System.IO;
 using NPaperless.Services.Services.CorrespondentsRepo;
 using NPaperless.Services.Repositories.DocumentsRepos;
 using System.Threading.Tasks;
+using NPaperless.Services.BusinessLogic;
+using AutoMapper;
 
 namespace NPaperless.Services.Controllers;
 
@@ -21,19 +23,21 @@ namespace NPaperless.Services.Controllers;
 public partial class DocumentsController : ControllerBase
 {
     private ILogger<DocumentsController> _logger;
-    private readonly IDocumentRepo _documentRepo;
+    private readonly IDocumentLogic _documentLogic;
+    private IMapper _mapper;
 
 
-    public DocumentsController(ILogger<DocumentsController> logger, IDocumentRepo documentRepo)
+    public DocumentsController(ILogger<DocumentsController> logger, IDocumentLogic documentLogic, IMapper mapper)
     {
         _logger = logger;
-        _documentRepo = documentRepo;
+        _documentLogic = documentLogic;
+        _mapper = mapper;
     }
 
     [HttpGet(Name = "GetDocuments")]
-    public async Task<IActionResult> GetDocuments([FromQuery] DocumentsFilterModel filter)
+    public async Task<IActionResult> GetDocuments()
     {
-        var docs = await _documentRepo.GetAllDocs();
+        var docs = await _documentLogic.GetAllDocs();
         return Ok(new ListResponse<Document>()
         {
             Count = docs.Count,
@@ -41,40 +45,14 @@ public partial class DocumentsController : ControllerBase
             Previous = null,
             Results = docs
         });
-
-        /*
-        Random r = new Random();
-
-        int count = r.Next(1, 20);
-
-        return this.Ok(new ListResponse<Document>()
-        {
-            Count = count,
-            Next = null,
-            Previous = null,
-            Results = Builder<Document>.CreateListOfSize(count)
-                .All()
-                    .With(p => p.ArchiveSerialNumber = null)
-                    .With(p => p.ArchivedFileName = p.Id + ".pdf")
-                    .With(p => p.OriginalFileName = p.Id + ".pdf")
-                    .With(p => p.DocumentType = filter.DocTypeId)
-                    .With(p => p.Correspondent = filter.CorrespondentId)
-                    .With(p => p.Added = DateTime.Now)
-                    .With(p => p.CreatedDate = DateTime.Now)
-                    .With(p => p.Created = DateTime.Now)
-                    .With(p => p.Modified = DateTime.Now)
-                    .With(p => p.Tags = Enumerable.Range(1, r.Next(1, 4)).Select(u => (uint)u).ToArray())
-                .Build()
-        });
-        */
     }
 
     [HttpGet("{id}", Name = "GetDocument")]
     public async Task<IActionResult> GetDocument([FromRoute] uint id)
     {
-        var doc = await _documentRepo.GetOneDoc(id);
+        var doc = await _documentLogic.GetOneDoc(id);
 
-        return Ok(doc);
+        return Ok(_mapper.Map<DocumentDto>(doc));
     }
 
     [HttpGet("{id}/suggestions", Name = "GetDocumentSuggestions")]
@@ -105,17 +83,17 @@ public partial class DocumentsController : ControllerBase
     [HttpPut("{id:int}", Name = "UpdateDocument")]
     public async Task<IActionResult> UpdateDocument([FromRoute] uint id, [FromBody] DocumentDto document)
     {
-        var updatedDoc = await _documentRepo.UpdateOneDoc(id, document);
+        var updatedDoc = await _documentLogic.UpdateOneDoc(id, _mapper.Map<Document>(document));
 
-        return Ok(updatedDoc);
+        return Ok(_mapper.Map<DocumentDto>(updatedDoc));
     }
 
     [HttpDelete("{id:int}", Name = "DeleteDocument")]
     public async Task<IActionResult> DeleteDocument([FromRoute] uint id)
     {
-        var deletedDoc = await _documentRepo.DeleteOneDoc(id);
+        var deletedDoc = await _documentLogic.DeleteOneDoc(id);
 
-        return Ok(deletedDoc);
+        return Ok(_mapper.Map<DocumentDto>(deletedDoc));
     }
 
 
@@ -124,10 +102,7 @@ public partial class DocumentsController : ControllerBase
     public async Task<IActionResult> UploadDocument([FromForm] IEnumerable<IFormFile> document)
     {
 
-
-        DocumentDto doc = new DocumentDto();
-
-        var createdDoc = await _documentRepo.CreateOneDoc(doc);
+        var createdDoc = await _documentLogic.CreateOneDoc(document);
         return Ok(createdDoc);
     }
 

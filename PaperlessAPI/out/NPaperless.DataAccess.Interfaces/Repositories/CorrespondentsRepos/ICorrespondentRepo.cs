@@ -7,10 +7,10 @@ namespace NPaperless.Services.Services.CorrespondentsRepo
 {
     public interface ICorrespondentRepo
     {
-        Task<Correspondent> CreateOne(CorrespondentDto correspondent);
+        Task<Correspondent> CreateOne(Correspondent correspondent);
         Task<List<Correspondent>> GetAll();
 
-        Task<Correspondent> UpdateOne(long id, CorrespondentDto correspondent);
+        Task<Correspondent> UpdateOne(long id, Correspondent correspondent);
 
         Task<Correspondent> DeleteOne(long id);
 

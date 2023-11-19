@@ -8,6 +8,7 @@ namespace NPaperless.Services
     /// </summary>
     public class Program
     {
+
         /// <summary>
         /// Main
         /// </summary>

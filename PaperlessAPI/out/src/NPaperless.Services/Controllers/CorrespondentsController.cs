@@ -7,6 +7,7 @@ using System;
 using NPaperless.Services.Services.CorrespondentsRepo;
 using System.Threading.Tasks;
 using Swashbuckle.AspNetCore.Annotations;
+using System.Collections.Generic;
 
 namespace NPaperless.Services.Controllers;
 
@@ -19,10 +20,14 @@ public class CorrespondentsController : ControllerBase
     
     private readonly ICorrespondentRepo _correspondentRepo;
 
-    public CorrespondentsController(ILogger<CorrespondentsController> logger, ICorrespondentRepo correspondentRepo)
+    private IMapper _mapper;
+
+    public CorrespondentsController(ILogger<CorrespondentsController> logger, ICorrespondentRepo correspondentRepo, IMapper mapper)
     {
         _logger = logger;
         _correspondentRepo = correspondentRepo;
+        _mapper = mapper;
+
     }
 
     [HttpGet(Name = "GetCorrespondents")]
@@ -34,7 +39,7 @@ public class CorrespondentsController : ControllerBase
             Count = corrs.Count,
             Next = null,
             Previous = null,
-            Results = corrs
+            Results = _mapper.Map<List<Correspondent>>(corrs)
         });
         //return Ok(corrs);
     }
@@ -42,18 +47,18 @@ public class CorrespondentsController : ControllerBase
     [HttpPost(Name = "CreateCorrespondent")]
     public async Task<IActionResult> CreateCorrespondent(CorrespondentDto correspondent)
     {
-
-        var corr = await _correspondentRepo.CreateOne(correspondent);
         
-        return Ok(corr);
+        var corr = await _correspondentRepo.CreateOne(_mapper.Map<Correspondent>(correspondent));
+        
+        return Ok(_mapper.Map<DocumentDto>(corr));
     }
 
     [HttpPut("{id:int}", Name = "UpdateCorrespondent")]
     public async Task<IActionResult> UpdateCorrespondent([FromRoute] int id, [FromBody] CorrespondentDto correspondent)
     {
-        var corr = await _correspondentRepo.UpdateOne(id, correspondent);
+        var corr = await _correspondentRepo.UpdateOne(id, _mapper.Map<Correspondent>(correspondent));
 
-        return Ok(corr);
+        return Ok(_mapper.Map<DocumentDto>(corr));
     }
 
     [HttpDelete("{id:int}", Name = "DeleteCorrespondent")]
@@ -61,6 +66,6 @@ public class CorrespondentsController : ControllerBase
     {
         var corr = await _correspondentRepo.DeleteOne(id);
 
-        return Ok(corr);
+        return Ok(_mapper.Map<DocumentDto>(corr));
     }
 }
