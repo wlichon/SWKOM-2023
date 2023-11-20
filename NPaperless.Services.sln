@@ -4,7 +4,7 @@ VisualStudioVersion = 17.6.33829.357
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NPaperless.Services", "PaperlessAPI\NPaperless.Services\NPaperless.Services.csproj", "{B92639E2-17DE-459E-8B14-A20387916ACB}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NPaperless.DataAccess.Tests", "PaperlessAPI\UnitTests\NPaperless.DataAccess.Tests.csproj", "{FB8069F7-A5DE-4D21-B908-BBC12AA07977}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NPaperless.DataAccess.Tests", "PaperlessAPI\NPaperless.UnitTests\NPaperless.DataAccess.Tests.csproj", "{FB8069F7-A5DE-4D21-B908-BBC12AA07977}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NPaperless.Models", "PaperlessAPI\NPaperless.Models\NPaperless.Models.csproj", "{1C44B72F-D825-4DC4-B5A1-661C093A80ED}"
 EndProject

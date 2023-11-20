@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\wikto\\Desktop\\FH\\5-semester\\SWKOM\\Paperless-git\\ClassLibrary\\NPaperless.Models.csproj": {}
+    "C:\\Users\\wikto\\Desktop\\FH\\5-semester\\SWKOM\\Paperless-git\\PaperlessAPI\\out\\ClassLibrary\\NPaperless.Models.csproj": {}
   },
   "projects": {
-    "C:\\Users\\wikto\\Desktop\\FH\\5-semester\\SWKOM\\Paperless-git\\ClassLibrary\\NPaperless.Models.csproj": {
+    "C:\\Users\\wikto\\Desktop\\FH\\5-semester\\SWKOM\\Paperless-git\\PaperlessAPI\\out\\ClassLibrary\\NPaperless.Models.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\wikto\\Desktop\\FH\\5-semester\\SWKOM\\Paperless-git\\ClassLibrary\\NPaperless.Models.csproj",
+        "projectUniqueName": "C:\\Users\\wikto\\Desktop\\FH\\5-semester\\SWKOM\\Paperless-git\\PaperlessAPI\\out\\ClassLibrary\\NPaperless.Models.csproj",
         "projectName": "NPaperless.Models",
-        "projectPath": "C:\\Users\\wikto\\Desktop\\FH\\5-semester\\SWKOM\\Paperless-git\\ClassLibrary\\NPaperless.Models.csproj",
+        "projectPath": "C:\\Users\\wikto\\Desktop\\FH\\5-semester\\SWKOM\\Paperless-git\\PaperlessAPI\\out\\ClassLibrary\\NPaperless.Models.csproj",
         "packagesPath": "C:\\Users\\wikto\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\wikto\\Desktop\\FH\\5-semester\\SWKOM\\Paperless-git\\ClassLibrary\\obj\\",
+        "outputPath": "C:\\Users\\wikto\\Desktop\\FH\\5-semester\\SWKOM\\Paperless-git\\PaperlessAPI\\out\\ClassLibrary\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\wikto\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -51,10 +51,6 @@
             "Microsoft.AspNetCore.Mvc.Core": {
               "target": "Package",
               "version": "[2.2.5, )"
-            },
-            "Minio": {
-              "target": "Package",
-              "version": "[6.0.1, )"
             }
           },
           "imports": [
