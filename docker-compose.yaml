@@ -14,7 +14,7 @@ services:
 
   api:
     build:
-      context: ./PaperlessAPI/out
+      context: ./PaperlessAPI
     restart: unless-stopped
     ports:
       - "8081:8081"
