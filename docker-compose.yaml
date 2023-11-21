@@ -31,6 +31,7 @@ services:
       POSTGRES_PASSWORD: password
     volumes:
       - ./PaperlessDB/local_pgdata:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
       
   pgadmin:
     image: dpage/pgadmin4

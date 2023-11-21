@@ -1,9 +1,11 @@
 ﻿using FluentValidation;
 using FluentValidation.Results;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 using Microsoft.Extensions.Configuration;
 using Minio;
+using NPaperless.Models.Models;
 using NPaperless.Services.Models;
 using NPaperless.Services.Repositories.DocumentsRepos;
 using System.Collections.Generic;
@@ -19,11 +21,13 @@ namespace NPaperless.Services.BusinessLogic
         private readonly IDocumentRepo _documentRepository;
         private IValidator<Document> _validator;
         private readonly MinIOUploader _minioClient;
+        private readonly RabbitMQClient _rabbitMQClient;
 
 
-        public DocumentLogic(IDocumentRepo documentRepository, IValidator<Document> validator, IConfiguration config)
+        public DocumentLogic(IDocumentRepo documentRepository, IValidator<Document> validator, IHostingEnvironment env)
         {
-            _minioClient = new MinIOUploader(config);
+            _rabbitMQClient = new RabbitMQClient(env);
+            _minioClient = new MinIOUploader(env);
             _documentRepository = documentRepository;
             _validator = validator;
         }
@@ -38,6 +42,8 @@ namespace NPaperless.Services.BusinessLogic
 
             if (f == null)
                 return document;
+
+            _rabbitMQClient.CreateExchange();
 
             await _minioClient.UploadFileAsync(f);
 

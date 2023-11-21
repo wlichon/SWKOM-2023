@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Http;
 using Minio.DataModel.Args;
 using Minio.DataModel;
 using Microsoft.Extensions.Configuration;
+using Microsoft.AspNetCore.Hosting;
 
 public class MinIOUploader
 {
@@ -11,16 +12,24 @@ public class MinIOUploader
 
     private readonly IConfiguration _config;
 
-    private string endpoint = "localhost:9000";
+    private string endpoint;
     private string accessKey = "adkBQ7HSGAS34lJozZyj";
     private string secretKey = "DU9xjAdodw409joJUnw6A5tbjBsEeU8mbIfXgDWK";
 
     private string bucketName = "paperless";
-    private string objectName = "paperlessObject";
 
-    public MinIOUploader(IConfiguration config)
+    public MinIOUploader(IHostingEnvironment env)
     {
-       
+        string environment = env.EnvironmentName;
+
+        if(environment == "Development")
+        {
+            endpoint = "localhost:9000";
+        }
+        else
+        {
+            endpoint = "minio:9000";
+        }
         
 
         _minioClient = new MinioClient()
@@ -32,13 +41,13 @@ public class MinIOUploader
 
     public async Task UploadFileAsync(IFormFile file)
     {
-
+        string objName = file.FileName;
         // Upload the file to MinIO
         using (var stream = file.OpenReadStream())
         {
             PutObjectArgs poa = new PutObjectArgs()
                 .WithBucket(bucketName)
-                .WithObject(objectName)
+                .WithObject(objName)
                 .WithStreamData(stream)
                 .WithObjectSize(stream.Length)
                 .WithContentType(file.ContentType);
@@ -54,7 +63,7 @@ public class MinIOUploader
 
             StatObjectArgs statOjbectArgs = new StatObjectArgs()
                 .WithBucket(bucketName)
-                .WithObject(objectName);
+                .WithObject(objName);
 
             ObjectStat objectStat = await _minioClient.StatObjectAsync(statOjbectArgs);
             Console.WriteLine(objectStat.ObjectName, objectStat.ETag);

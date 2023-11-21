@@ -1,0 +1,12 @@
+C:\Users\wikto\Desktop\FH\SWKOM\Paperless-git\PaperlessAPI\out\ClassLibrary\bin\Debug\net6.0\NPaperless.Models.deps.json
+C:\Users\wikto\Desktop\FH\SWKOM\Paperless-git\PaperlessAPI\out\ClassLibrary\bin\Debug\net6.0\NPaperless.Models.dll
+C:\Users\wikto\Desktop\FH\SWKOM\Paperless-git\PaperlessAPI\out\ClassLibrary\bin\Debug\net6.0\NPaperless.Models.pdb
+C:\Users\wikto\Desktop\FH\SWKOM\Paperless-git\PaperlessAPI\out\ClassLibrary\obj\Debug\net6.0\NPaperless.Models.csproj.AssemblyReference.cache
+C:\Users\wikto\Desktop\FH\SWKOM\Paperless-git\PaperlessAPI\out\ClassLibrary\obj\Debug\net6.0\NPaperless.Models.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\wikto\Desktop\FH\SWKOM\Paperless-git\PaperlessAPI\out\ClassLibrary\obj\Debug\net6.0\NPaperless.Models.AssemblyInfoInputs.cache
+C:\Users\wikto\Desktop\FH\SWKOM\Paperless-git\PaperlessAPI\out\ClassLibrary\obj\Debug\net6.0\NPaperless.Models.AssemblyInfo.cs
+C:\Users\wikto\Desktop\FH\SWKOM\Paperless-git\PaperlessAPI\out\ClassLibrary\obj\Debug\net6.0\NPaperless.Models.csproj.CoreCompileInputs.cache
+C:\Users\wikto\Desktop\FH\SWKOM\Paperless-git\PaperlessAPI\out\ClassLibrary\obj\Debug\net6.0\NPaperless.Models.dll
+C:\Users\wikto\Desktop\FH\SWKOM\Paperless-git\PaperlessAPI\out\ClassLibrary\obj\Debug\net6.0\refint\NPaperless.Models.dll
+C:\Users\wikto\Desktop\FH\SWKOM\Paperless-git\PaperlessAPI\out\ClassLibrary\obj\Debug\net6.0\NPaperless.Models.pdb
+C:\Users\wikto\Desktop\FH\SWKOM\Paperless-git\PaperlessAPI\out\ClassLibrary\obj\Debug\net6.0\ref\NPaperless.Models.dll
