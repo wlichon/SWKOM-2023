@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "ZsWygc6N6R01zc/q4QMTifFEQeNDxrSfpsGjt5Tjq3DzzB8xqbjH/CZzMzkwfbmKaWQD01Fe5xN7xyKS0QzUvQ==",
+  "dgSpecHash": "FCdFEJq4VnCmpKd1MLnAJ7Z0in/0Lj70ciXWSVHfA3+FOOwM2dkTQz7R0tN/Bb17QWWtkItRn55nifu+lXN2zg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\wikto\\Desktop\\FH\\SWKOM\\Paperless-git\\PaperlessAPI\\NPaperless.DataAccess.Interfaces\\NPaperless.DataAccess.Interfaces.csproj",
+  "projectFilePath": "C:\\Users\\wikto\\Desktop\\FH\\5-semester\\SWKOM\\Paperless-git\\PaperlessAPI\\NPaperless.DataAccess.Interfaces\\NPaperless.DataAccess.Interfaces.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\wikto\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\wikto\\.nuget\\packages\\communitytoolkit.highperformance\\8.2.2\\communitytoolkit.highperformance.8.2.2.nupkg.sha512",

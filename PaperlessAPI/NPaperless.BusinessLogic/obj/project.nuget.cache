@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "oz0zmh2qbq1wOGMFkLrsPqno7xTtjZbmqk2vDfzd8152PhtQrqOCOOPLpg7Nu66dboY29m9tXwuC3OJZ++pUOw==",
+  "dgSpecHash": "UwB3nAGrgxUwlHtDQIykRIfmQYEVu2Oa3By+kO+KS68c7LyU3zLXk6R/k6znQCqnWxv6m+y9GD/cArBsggX6vw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\wikto\\Desktop\\FH\\SWKOM\\Paperless-git\\PaperlessAPI\\NPaperless.BusinessLogic\\NPaperless.BusinessLogic.csproj",
+  "projectFilePath": "C:\\Users\\wikto\\Desktop\\FH\\5-semester\\SWKOM\\Paperless-git\\PaperlessAPI\\NPaperless.BusinessLogic\\NPaperless.BusinessLogic.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\wikto\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\wikto\\.nuget\\packages\\communitytoolkit.highperformance\\8.2.2\\communitytoolkit.highperformance.8.2.2.nupkg.sha512",

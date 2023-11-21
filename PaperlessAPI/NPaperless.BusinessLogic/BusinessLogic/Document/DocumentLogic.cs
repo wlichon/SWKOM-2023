@@ -43,7 +43,7 @@ namespace NPaperless.Services.BusinessLogic
             if (f == null)
                 return document;
 
-            _rabbitMQClient.CreateExchange();
+            _rabbitMQClient.PublishMessage();
 
             await _minioClient.UploadFileAsync(f);
 

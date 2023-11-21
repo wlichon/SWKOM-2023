@@ -18,16 +18,16 @@ namespace NPaperless.Models.Models
 
             if (environment == "Development")
             {
-                endpoint = "localhost:5672";
+                endpoint = "localhost";
             }
             else
             {
-                endpoint = "rabbitmq:5672";
+                endpoint = "rabbitmq";
             }
         
         }
 
-        public void CreateExchange()
+        public void PublishMessage()
         {
             var connectionFactory = new RabbitMQ.Client.ConnectionFactory()
             {
@@ -40,10 +40,25 @@ namespace NPaperless.Models.Models
             {
 
                 var connection = connectionFactory.CreateConnection();
-                var model = connection.CreateModel();
-                Console.WriteLine("Creating Exchange");
-                // Create Exchange
-                model.ExchangeDeclare("paperlessExchange", ExchangeType.Direct);
+                var channel = connection.CreateModel();
+
+                channel.QueueDeclare(
+                    queue: "paperless",
+                    durable: false,
+                    exclusive: false,
+                    autoDelete: false,
+                    arguments: null
+                    );
+
+                const string message = "Document uploaded";
+
+                var body = Encoding.UTF8.GetBytes(message);
+
+                channel.BasicPublish(exchange: string.Empty,
+                                     routingKey: "paperless",
+                                     basicProperties: null,
+                                     body: body);
+                
 
             }
             catch(Exception ex)
