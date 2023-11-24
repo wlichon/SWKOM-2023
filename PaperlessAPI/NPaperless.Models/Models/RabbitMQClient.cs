@@ -27,7 +27,7 @@ namespace NPaperless.Models.Models
         
         }
 
-        public void PublishMessage()
+        public void PublishMessage(string fileName)
         {
             var connectionFactory = new RabbitMQ.Client.ConnectionFactory()
             {
@@ -50,7 +50,7 @@ namespace NPaperless.Models.Models
                     arguments: null
                     );
 
-                const string message = "Document uploaded";
+                string message = fileName;
 
                 var body = Encoding.UTF8.GetBytes(message);
 

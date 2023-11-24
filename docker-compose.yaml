@@ -1,5 +1,6 @@
 services:
   frontend:
+    container_name: frontend
     build:
       context: ./PaperlessUI/static
     restart: unless-stopped
@@ -13,6 +14,7 @@ services:
     env_file: docker-compose.env
 
   api:
+    container_name: api
     build:
       context: ./PaperlessAPI
     restart: unless-stopped
@@ -36,7 +38,7 @@ services:
   pgadmin:
     image: dpage/pgadmin4
     user: root
-    container_name: pgadmin4_container
+    container_name: pgadmin
     restart: always
     ports:
       - "8888:80"
@@ -47,6 +49,7 @@ services:
       - ./PaperlessDB/pgadmin-data:/var/lib/pgadmin
 
   minio:
+    container_name: minio
     image: minio/minio
     ports:
       - "9000:9000"
@@ -59,6 +62,7 @@ services:
     command: server --console-address ":9001" /data
 
   rabbitmq:
+    container_name: rabbitmq
     image: rabbitmq:3.9.29-management-alpine
     environment:
       - RABBITMQ_DEFAULT_USER=admin
@@ -66,5 +70,28 @@ services:
     ports:
       - 5672:5672
       - 15672:15672
+
+  tesseract:
+    container_name: tesseract
+    build:
+      context: ./PaperlessOCR
+    stdin_open: true
+    tty: true
+    depends_on:
+      - rabbitmq
+    volumes:
+      - ./PaperlessOCR/images:/mnt/images
+      - ./PaperlessOCR/models:/usr/share/tessdata
+      - ./PaperlessOCR/config/rabbitmqadmin.config:/etc/rabbitmq/rabbitmqadmin.conf
+      - ./PaperlessOCR/script/:/app
+      - ./PaperlessOCR/gs-out:/app/gs-out
+    ports:
+      - 8082:8082
+    command: tail -f /dev/null
+
+networks:
+  network1:
+    name: paperless-network
+    
 
   
