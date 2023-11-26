@@ -38,13 +38,23 @@ public partial class DocumentsController : ControllerBase
     public async Task<IActionResult> GetDocuments()
     {
         var docs = await _documentLogic.GetAllDocs();
-        return Ok(new ListResponse<Document>()
+
+        ListResponse<DocumentDto> listDocs = null;
+        try
         {
-            Count = docs.Count,
-            Next = null,
-            Previous = null,
-            Results = docs
-        });
+            listDocs = new ListResponse<DocumentDto>()
+            {
+                Count = docs.Count,
+                Next = null,
+                Previous = null,
+                Results = _mapper.Map<List<Document>, List<DocumentDto>>(docs)
+            };
+
+        }catch(Exception ex)
+        {
+            _logger.LogError(ex.Message);
+        }
+        return Ok(listDocs);
     }
 
     [HttpGet("{id}", Name = "GetDocument")]

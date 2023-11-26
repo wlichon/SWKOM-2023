@@ -1,0 +1,6 @@
+- Make sure that controller functions returns Dto objects
+- Finish writing controller logic for documents
+- Unit test validation rules
+- Finish writing unit tests for repository
+- Failure/exception handling (layer specific)
+- Logging in critical positions

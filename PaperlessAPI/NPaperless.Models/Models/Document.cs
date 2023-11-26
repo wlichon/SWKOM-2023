@@ -51,6 +51,9 @@ public partial class Document
 
 public partial class DocumentDto
 {
+    [JsonPropertyName("id")]
+    public uint Id { get; set; }
+
     [JsonPropertyName("correspondent")]
     public uint? Correspondent { get; set; }
 
@@ -60,11 +63,19 @@ public partial class DocumentDto
     [JsonPropertyName("title")]
     public string Title { get; set; } = string.Empty;
 
+    [JsonPropertyName("content")]
+    public string Content { get; set; } = string.Empty;
+
     [JsonPropertyName("tags")]
     public uint[] Tags { get; set; } = new uint[0];
 
+    [JsonPropertyName("created_date")]
+    [JsonConverter(typeof(DateOnlyConverter))]
+    public DateTime created_date { get; set; } = DateTime.UtcNow;
+
     [JsonPropertyName("created")]
     public DateTime Created { get; set; } = DateTime.UtcNow;
+
 
     [JsonPropertyName("added")]
     public DateTime Added { get; set; } = DateTime.UtcNow;

@@ -52,10 +52,10 @@ public partial class SettingsController : ControllerBase
     public IActionResult GetUISettings()
     {
         string result = @"{
-            ""display_name"": ""max"",
+            ""display_name"": ""Wiktor"",
             ""user"": {
                 ""id"": 3,
-                ""username"": ""max"",
+                ""username"": ""Wiktor"",
                 ""is_superuser"": true,
                 ""groups"": []
             },
