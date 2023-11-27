@@ -8,9 +8,18 @@ namespace NPaperless.Services.Validator
     {
         public DocumentTitleValidator()
         {
-            RuleFor(x => x.Title).NotEmpty();
-            RuleFor(x => x.Title).MaximumLength(20);
-            RuleFor(x => x.Title).Matches("[A-Za-z]");
+            RuleFor(x => x.title).NotEmpty();
+            RuleFor(x => x.title).MaximumLength(20);
+            RuleFor(x => x.title).Matches("[A-Za-z]");
+        }
+    }
+
+    public class DocumentCreatedDateValidator : AbstractValidator<Document>
+    {
+        public DocumentCreatedDateValidator()
+        {
+            RuleFor(x => x.created_date).NotEmpty();
+            RuleFor(x => x.created_date).LessThan(DateTime.Now);
         }
     }
 
@@ -19,6 +28,7 @@ namespace NPaperless.Services.Validator
         public DocumentValidator()
         {
             Include(new DocumentTitleValidator());
+            Include(new DocumentCreatedDateValidator());
         }
     }
 }

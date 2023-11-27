@@ -6,38 +6,38 @@ namespace NPaperless.Services.Models;
 public partial class Document
 {
     [JsonPropertyName("id")]
-    public uint Id { get; set; }
+    public uint id { get; set; }
 
     [JsonPropertyName("correspondent")]
-    public uint? Correspondent { get; set; }
+    public uint? correspondent { get; set; }
 
     [JsonPropertyName("document_type")]
-    public uint? DocumentType { get; set; }
+    public uint? documentType { get; set; }
 
     [JsonPropertyName("storage_path")]
-    public uint? StoragePath { get; set; }
+    public uint? storagePath { get; set; }
 
     [JsonPropertyName("title")]
-    public string Title { get; set; } = string.Empty;
+    public string title { get; set; } = string.Empty;
 
     [JsonPropertyName("content")]
-    public string Content { get; set; } = string.Empty;
+    public string content { get; set; } = string.Empty;
 
     [JsonPropertyName("tags")]
-    public uint[] Tags { get; set; } = new uint[0];
+    public uint[] tags { get; set; } = new uint[0];
 
     [JsonPropertyName("created")]
-    public DateTime Created { get; set; } = DateTime.UtcNow;
+    public DateTime created { get; set; }
 
     [JsonPropertyName("created_date")]
     [JsonConverter(typeof(DateOnlyConverter))]
-    public DateTime CreatedDate { get; set; } = DateTime.UtcNow;
+    public DateTime created_date { get; set; }
 
     [JsonPropertyName("modified")]
-    public DateTime Modified { get; set; } = DateTime.UtcNow;
+    public DateTime modified { get; set; }
 
     [JsonPropertyName("added")]
-    public DateTime Added { get; set; } = DateTime.UtcNow;
+    public DateTime added { get; set; }
 
     [JsonPropertyName("archive_serial_number")]
     public string? ArchiveSerialNumber { get; set; } = string.Empty;
@@ -52,31 +52,31 @@ public partial class Document
 public partial class DocumentDto
 {
     [JsonPropertyName("id")]
-    public uint Id { get; set; }
+    public uint id { get; set; }
 
     [JsonPropertyName("correspondent")]
-    public uint? Correspondent { get; set; }
+    public uint? correspondent { get; set; }
 
     [JsonPropertyName("document_type")]
-    public uint? DocumentType { get; set; }
+    public uint? documentType { get; set; }
 
     [JsonPropertyName("title")]
-    public string Title { get; set; } = string.Empty;
+    public string title { get; set; } = string.Empty;
 
     [JsonPropertyName("content")]
-    public string Content { get; set; } = string.Empty;
+    public string content { get; set; } = string.Empty;
 
     [JsonPropertyName("tags")]
-    public uint[] Tags { get; set; } = new uint[0];
+    public uint[] tags { get; set; } = new uint[0];
 
     [JsonPropertyName("created_date")]
     [JsonConverter(typeof(DateOnlyConverter))]
-    public DateTime created_date { get; set; } = DateTime.UtcNow;
+    public DateTime created_date { get; set; }
 
     [JsonPropertyName("created")]
-    public DateTime Created { get; set; } = DateTime.UtcNow;
+    public DateTime created { get; set; }
 
 
     [JsonPropertyName("added")]
-    public DateTime Added { get; set; } = DateTime.UtcNow;
+    public DateTime added { get; set; }
 }

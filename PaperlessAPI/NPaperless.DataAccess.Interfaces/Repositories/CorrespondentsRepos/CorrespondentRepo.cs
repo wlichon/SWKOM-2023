@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using NPaperless.Services.Data;
 using NPaperless.Services.Models;
 using NPaperless.Services.Services.CorrespondentsRepo;
@@ -12,10 +13,12 @@ public class CorrespondentRepo : ICorrespondentRepo
 {
     private DataContext _context;
     private readonly IMapper _mapper;
-    public CorrespondentRepo(DataContext context, IMapper mapper)
+    private readonly ILogger _logger;
+    public CorrespondentRepo(DataContext context, IMapper mapper, ILogger logger)
     {
         _context = context;
         _mapper = mapper;
+        _logger = logger;
     }
     public async Task<Correspondent> CreateOne(Correspondent correspondent)
     {
@@ -28,7 +31,7 @@ public class CorrespondentRepo : ICorrespondentRepo
         }
         catch (DbUpdateException ex)
         {
-            Console.WriteLine(ex.Message);
+            _logger.Log(LogLevel.Error, ex.Message);
         }
         return corr;
 
@@ -36,7 +39,7 @@ public class CorrespondentRepo : ICorrespondentRepo
 
     public async Task<List<Correspondent>> GetAll()
     {
-        List<Correspondent> corrs = null;  // Initialize to null or an empty list, depending on your preference.
+        List<Correspondent> corrs = null; 
 
         try
         {
@@ -44,12 +47,10 @@ public class CorrespondentRepo : ICorrespondentRepo
         }
         catch (DbUpdateException ex)
         {
-            Console.WriteLine(ex.Message);
-            // Handle the exception or log it as needed.
-            // You might want to throw the exception again if you don't want to suppress it.
+            _logger.Log(LogLevel.Error, ex.Message);
         }
 
-        return corrs ?? new List<Correspondent>();  // Return the list or an empty list if an exception occurred.
+        return corrs ?? new List<Correspondent>();
 
     }
 
@@ -69,7 +70,15 @@ public class CorrespondentRepo : ICorrespondentRepo
         corr.document_count = correspondent.document_count;
         corr.last_correspondence = corr.last_correspondence;
 
-        await _context.SaveChangesAsync();
+        try
+        {
+            await _context.SaveChangesAsync();
+
+        }
+        catch(DbUpdateException ex)
+        {
+            _logger.Log(LogLevel.Error, ex.Message);
+        }
 
         return corr;    
         
@@ -77,7 +86,7 @@ public class CorrespondentRepo : ICorrespondentRepo
 
     public async Task<Correspondent> DeleteOne(long id)
     {
-        Correspondent correspondent;
+        Correspondent correspondent = new Correspondent();
 
         try
         {
@@ -86,7 +95,7 @@ public class CorrespondentRepo : ICorrespondentRepo
             if (correspondent == null)
             {
                 // Correspondent with the given id was not found
-                return null;
+                return correspondent;
             }
 
             _context.Correspondents.Remove(correspondent);
@@ -94,9 +103,7 @@ public class CorrespondentRepo : ICorrespondentRepo
         }
         catch (Exception ex)
         {
-            Console.WriteLine(ex.Message);
-            // Handle the exception as needed
-            throw; // rethrow the exception or handle it based on your requirements
+            _logger.Log(LogLevel.Error, ex.Message);
         }
 
         return correspondent;

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Logging;
 using RabbitMQ.Client;
 using System;
 using System.Collections.Generic;
@@ -10,19 +11,20 @@ namespace NPaperless.Models.Models
 {
     public class RabbitMQClient
     {
-        private string username = "admin";
-        private string password = "password";
-        private string endpoint;
-        public RabbitMQClient(IHostingEnvironment env) {
+        private string _username = "admin";
+        private string _password = "password";
+        private string _endpoint;
+        private readonly ILogger _logger;
+        public RabbitMQClient(IHostingEnvironment env, ILogger logger) {
             string environment = env.EnvironmentName;
-
+            _logger = logger;
             if (environment == "Development")
             {
-                endpoint = "localhost";
+                _endpoint = "localhost";
             }
             else
             {
-                endpoint = "rabbitmq";
+                _endpoint = "rabbitmq";
             }
         
         }
@@ -31,9 +33,9 @@ namespace NPaperless.Models.Models
         {
             var connectionFactory = new RabbitMQ.Client.ConnectionFactory()
             {
-                UserName = username,
-                Password = password,
-                HostName = endpoint
+                UserName = _username,
+                Password = _password,
+                HostName = _endpoint
             };
 
             try
@@ -63,7 +65,7 @@ namespace NPaperless.Models.Models
             }
             catch(Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                _logger.Log(LogLevel.Error, ex.Message);
             }
         }
         

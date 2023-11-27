@@ -4,7 +4,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
-namespace NPaperless.DataAccess.Entities.Migrations
+namespace NPaperless.Services.Migrations
 {
     /// <inheritdoc />
     public partial class Initial : Migration
@@ -35,25 +35,25 @@ namespace NPaperless.DataAccess.Entities.Migrations
                 name: "Documents",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "bigint", nullable: false)
+                    id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Correspondent = table.Column<long>(type: "bigint", nullable: true),
-                    DocumentType = table.Column<long>(type: "bigint", nullable: true),
-                    StoragePath = table.Column<long>(type: "bigint", nullable: true),
-                    Title = table.Column<string>(type: "text", nullable: false),
-                    Content = table.Column<string>(type: "text", nullable: false),
-                    Tags = table.Column<long[]>(type: "bigint[]", nullable: false),
-                    Created = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    CreatedDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    Modified = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    Added = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    correspondent = table.Column<long>(type: "bigint", nullable: true),
+                    documentType = table.Column<long>(type: "bigint", nullable: true),
+                    storagePath = table.Column<long>(type: "bigint", nullable: true),
+                    title = table.Column<string>(type: "text", nullable: false),
+                    content = table.Column<string>(type: "text", nullable: false),
+                    tags = table.Column<long[]>(type: "bigint[]", nullable: false),
+                    created = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    created_date = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    modified = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    added = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     ArchiveSerialNumber = table.Column<string>(type: "text", nullable: true),
                     OriginalFileName = table.Column<string>(type: "text", nullable: false),
                     ArchivedFileName = table.Column<string>(type: "text", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Documents", x => x.Id);
+                    table.PrimaryKey("PK_Documents", x => x.id);
                 });
         }
 

@@ -15,6 +15,7 @@ using NPaperless.Services.Repositories.DocumentsRepos;
 using System.Threading.Tasks;
 using NPaperless.Services.BusinessLogic;
 using AutoMapper;
+using System.Reflection.Metadata.Ecma335;
 
 namespace NPaperless.Services.Controllers;
 
@@ -52,7 +53,8 @@ public partial class DocumentsController : ControllerBase
 
         }catch(Exception ex)
         {
-            _logger.LogError(ex.Message);
+            _logger.Log(LogLevel.Error, ex.Message);
+            return StatusCode(500);
         }
         return Ok(listDocs);
     }
@@ -62,7 +64,7 @@ public partial class DocumentsController : ControllerBase
     {
         var doc = await _documentLogic.GetOneDoc(id);
 
-        return Ok(_mapper.Map<DocumentDto>(doc));
+        return doc == null ? StatusCode(500) : Ok(doc);
     }
 
     [HttpGet("{id}/suggestions", Name = "GetDocumentSuggestions")]
@@ -95,7 +97,7 @@ public partial class DocumentsController : ControllerBase
     {
         var updatedDoc = await _documentLogic.UpdateOneDoc(id, _mapper.Map<Document>(document));
 
-        return Ok(_mapper.Map<DocumentDto>(updatedDoc));
+        return updatedDoc == null ? BadRequest(500) : Ok(_mapper.Map<DocumentDto>(updatedDoc));
     }
 
     [HttpDelete("{id:int}", Name = "DeleteDocument")]
@@ -103,7 +105,7 @@ public partial class DocumentsController : ControllerBase
     {
         var deletedDoc = await _documentLogic.DeleteOneDoc(id);
 
-        return Ok(_mapper.Map<DocumentDto>(deletedDoc));
+        return deletedDoc == null ? BadRequest(500) : Ok(_mapper.Map<DocumentDto>(deletedDoc));
     }
 
 
@@ -113,7 +115,7 @@ public partial class DocumentsController : ControllerBase
     {
 
         var createdDoc = await _documentLogic.CreateOneDoc(document);
-        return Ok(createdDoc);
+        return createdDoc == null ? BadRequest(500) : Ok(createdDoc);
     }
 
 

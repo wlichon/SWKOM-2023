@@ -111,7 +111,9 @@ namespace NPaperless.Services
 
             services.AddDbContext<DataContext>(options =>
             {
-                options.UseNpgsql(Configuration.GetConnectionString("postgres"));
+                var connectionString = Configuration.GetConnectionString("postgres");
+                options.UseNpgsql(connectionString);
+                options.UseNpgsql(connectionString, b => b.MigrationsAssembly("NPaperless.Services"));
             }, ServiceLifetime.Scoped);
             var mapperConfig = new MapperConfiguration(mc =>
             {

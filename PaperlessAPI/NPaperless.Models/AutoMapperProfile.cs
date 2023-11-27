@@ -13,10 +13,10 @@ namespace NPaperless.Services
 
 
             CreateMap<DocumentDto, Document>()
-                .ForMember(x => x.Id, opt => opt.Ignore())
-                .ForMember(x => x.StoragePath, opt => opt.Ignore())
-                .ForMember(x => x.Content, opt => opt.Ignore())
-                .ForMember(x => x.Modified, opt => opt.Ignore())
+                .ForMember(x => x.id, opt => opt.Ignore())
+                .ForMember(x => x.storagePath, opt => opt.Ignore())
+                .ForMember(x => x.content, opt => opt.Ignore())
+                .ForMember(x => x.modified, opt => opt.Ignore())
                 .ForMember(x => x.ArchivedFileName, opt => opt.Ignore())
                 .ForMember(x => x.OriginalFileName, opt => opt.Ignore())
                 .ForMember(x => x.ArchiveSerialNumber, opt => opt.Ignore())

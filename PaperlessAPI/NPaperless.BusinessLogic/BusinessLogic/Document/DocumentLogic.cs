@@ -28,8 +28,8 @@ namespace NPaperless.Services.BusinessLogic
 
         public DocumentLogic(IDocumentRepo documentRepository, IValidator<Document> validator, IHostingEnvironment env, ILogger logger)
         {
-            _rabbitMQClient = new RabbitMQClient(env);
-            _minioClient = new MinIOUploader(env);
+            _rabbitMQClient = new RabbitMQClient(env, logger);
+            _minioClient = new MinIOUploader(env, logger);
             _documentRepository = documentRepository;
             _validator = validator;
             _logger = logger;
@@ -79,7 +79,9 @@ namespace NPaperless.Services.BusinessLogic
             if (!valResult.IsValid)
             {
                 _logger.Log(LogLevel.Information, valResult.ToString());
+                return document;
             }
+            
             return await _documentRepository.UpdateOneDoc(id, document);
         }
     }

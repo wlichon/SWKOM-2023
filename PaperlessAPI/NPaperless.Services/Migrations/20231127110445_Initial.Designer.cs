@@ -2,22 +2,25 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using NPaperless.Services.Data;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
-namespace NPaperless.DataAccess.Entities.Migrations
+namespace NPaperless.Services.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20231127110445_Initial")]
+    partial class Initial
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.13")
+                .HasAnnotation("ProductVersion", "7.0.5")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
@@ -69,16 +72,12 @@ namespace NPaperless.DataAccess.Entities.Migrations
 
             modelBuilder.Entity("NPaperless.Services.Models.Document", b =>
                 {
-                    b.Property<long>("Id")
+                    b.Property<long>("id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint")
                         .HasAnnotation("Relational:JsonPropertyName", "id");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
-
-                    b.Property<DateTime>("Added")
-                        .HasColumnType("timestamp with time zone")
-                        .HasAnnotation("Relational:JsonPropertyName", "added");
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("id"));
 
                     b.Property<string>("ArchiveSerialNumber")
                         .HasColumnType("text")
@@ -89,51 +88,55 @@ namespace NPaperless.DataAccess.Entities.Migrations
                         .HasColumnType("text")
                         .HasAnnotation("Relational:JsonPropertyName", "archived_file_name");
 
-                    b.Property<string>("Content")
-                        .IsRequired()
-                        .HasColumnType("text")
-                        .HasAnnotation("Relational:JsonPropertyName", "content");
-
-                    b.Property<long?>("Correspondent")
-                        .HasColumnType("bigint")
-                        .HasAnnotation("Relational:JsonPropertyName", "correspondent");
-
-                    b.Property<DateTime>("Created")
-                        .HasColumnType("timestamp with time zone")
-                        .HasAnnotation("Relational:JsonPropertyName", "created");
-
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("timestamp with time zone")
-                        .HasAnnotation("Relational:JsonPropertyName", "created_date");
-
-                    b.Property<long?>("DocumentType")
-                        .HasColumnType("bigint")
-                        .HasAnnotation("Relational:JsonPropertyName", "document_type");
-
-                    b.Property<DateTime>("Modified")
-                        .HasColumnType("timestamp with time zone")
-                        .HasAnnotation("Relational:JsonPropertyName", "modified");
-
                     b.Property<string>("OriginalFileName")
                         .IsRequired()
                         .HasColumnType("text")
                         .HasAnnotation("Relational:JsonPropertyName", "original_file_name");
 
-                    b.Property<long?>("StoragePath")
+                    b.Property<DateTime>("added")
+                        .HasColumnType("timestamp with time zone")
+                        .HasAnnotation("Relational:JsonPropertyName", "added");
+
+                    b.Property<string>("content")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasAnnotation("Relational:JsonPropertyName", "content");
+
+                    b.Property<long?>("correspondent")
+                        .HasColumnType("bigint")
+                        .HasAnnotation("Relational:JsonPropertyName", "correspondent");
+
+                    b.Property<DateTime>("created")
+                        .HasColumnType("timestamp with time zone")
+                        .HasAnnotation("Relational:JsonPropertyName", "created");
+
+                    b.Property<DateTime>("created_date")
+                        .HasColumnType("timestamp with time zone")
+                        .HasAnnotation("Relational:JsonPropertyName", "created_date");
+
+                    b.Property<long?>("documentType")
+                        .HasColumnType("bigint")
+                        .HasAnnotation("Relational:JsonPropertyName", "document_type");
+
+                    b.Property<DateTime>("modified")
+                        .HasColumnType("timestamp with time zone")
+                        .HasAnnotation("Relational:JsonPropertyName", "modified");
+
+                    b.Property<long?>("storagePath")
                         .HasColumnType("bigint")
                         .HasAnnotation("Relational:JsonPropertyName", "storage_path");
 
-                    b.Property<long[]>("Tags")
+                    b.Property<long[]>("tags")
                         .IsRequired()
                         .HasColumnType("bigint[]")
                         .HasAnnotation("Relational:JsonPropertyName", "tags");
 
-                    b.Property<string>("Title")
+                    b.Property<string>("title")
                         .IsRequired()
                         .HasColumnType("text")
                         .HasAnnotation("Relational:JsonPropertyName", "title");
 
-                    b.HasKey("Id");
+                    b.HasKey("id");
 
                     b.ToTable("Documents");
                 });

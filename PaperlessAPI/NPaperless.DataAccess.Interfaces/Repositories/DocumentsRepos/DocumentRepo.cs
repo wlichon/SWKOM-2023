@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using NPaperless.Services.Data;
 using NPaperless.Services.Models;
 using System;
@@ -12,11 +13,12 @@ namespace NPaperless.Services.Repositories.DocumentsRepos
     {
 
         private DataContext _context;
+        private readonly ILogger _logger;
 
-        public DocumentRepo(DataContext context)
+        public DocumentRepo(DataContext context, ILogger logger)
         {
             _context = context;
-  
+            _logger = logger;   
         }
 
         public async Task<Document> CreateOneDoc(Document document)
@@ -29,7 +31,8 @@ namespace NPaperless.Services.Repositories.DocumentsRepos
             }
             catch (DbUpdateException ex)
             {
-                Console.WriteLine(ex.Message);
+                _logger.Log(LogLevel.Error, ex.Message);
+                return null;
             }
             return document;
 
@@ -37,7 +40,7 @@ namespace NPaperless.Services.Repositories.DocumentsRepos
 
         public async Task<Document> DeleteOneDoc(uint id)
         {
-            Document doc;
+            Document? doc = new Document();
 
             try
             {
@@ -53,9 +56,8 @@ namespace NPaperless.Services.Repositories.DocumentsRepos
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
-                
-                throw; 
+                _logger.Log(LogLevel.Error, ex.Message);
+                return null;
             }
 
             return doc;
@@ -71,16 +73,16 @@ namespace NPaperless.Services.Repositories.DocumentsRepos
             }
             catch (DbUpdateException ex)
             {
-                Console.WriteLine(ex.Message);
-              
+                _logger.Log(LogLevel.Error, ex.Message);
+                return null;
             }
 
-            return docs ?? new List<Document>(); 
+            return docs; 
         }
 
         public async Task<Document> GetOneDoc(uint id)
         {
-            Document doc;
+            Document? doc = new Document();
 
             try
             {
@@ -94,8 +96,8 @@ namespace NPaperless.Services.Repositories.DocumentsRepos
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
-                throw; 
+                _logger.Log(LogLevel.Error, ex.Message);
+                return null;
             }
 
             return doc;
@@ -109,12 +111,24 @@ namespace NPaperless.Services.Repositories.DocumentsRepos
                 return null;
             }
 
-            doc.Correspondent = document.Correspondent;
-            doc.DocumentType = document.DocumentType;
-            doc.Tags = document.Tags;
-            doc.Title = document.Title;
-            doc.Created = document.Created;
-            await _context.SaveChangesAsync();
+            doc.correspondent = document.correspondent;
+            doc.documentType = document.documentType;
+            doc.tags = document.tags;
+            doc.title = document.title;
+            doc.created = document.created;
+            
+            doc.created_date = TimeZoneInfo.ConvertTimeToUtc(document.created_date);
+
+            try
+            {
+                await _context.SaveChangesAsync();
+
+            }
+            catch(Exception ex)
+            {
+                _logger.Log(LogLevel.Error, ex.Message);
+                return null;
+            }
 
             return doc;
 

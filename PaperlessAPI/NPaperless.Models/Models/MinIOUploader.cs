@@ -5,6 +5,7 @@ using Minio.DataModel.Args;
 using Minio.DataModel;
 using Microsoft.Extensions.Configuration;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Logging;
 
 public class MinIOUploader
 {
@@ -17,9 +18,11 @@ public class MinIOUploader
     private string secretKey = "DU9xjAdodw409joJUnw6A5tbjBsEeU8mbIfXgDWK";
 
     private string bucketName = "paperless";
+    private readonly ILogger _logger;
 
-    public MinIOUploader(IHostingEnvironment env)
+    public MinIOUploader(IHostingEnvironment env, ILogger logger)
     {
+        _logger = logger;
         string environment = env.EnvironmentName;
 
         if(environment == "Development")
@@ -58,7 +61,7 @@ public class MinIOUploader
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                _logger.Log(LogLevel.Error, ex.Message);
             }
 
             StatObjectArgs statOjbectArgs = new StatObjectArgs()
