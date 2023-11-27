@@ -1,0 +1,13 @@
+Information: 27-Nov-23 8:46:46 AM PaperlessApi started
+Information: 27-Nov-23 8:48:00 AM PaperlessApi started
+Information: 27-Nov-23 8:48:18 AM Document validation failed
+Information: 27-Nov-23 8:49:14 AM PaperlessApi started
+Information: 27-Nov-23 8:49:55 AM Document validation failed
+Information: 27-Nov-23 9:01:04 AM PaperlessApi started
+Information: 27-Nov-23 9:01:16 AM 'Title' must not be empty.
+'Title' is not in the correct format.
+Information: 27-Nov-23 9:02:35 AM PaperlessApi started
+Information: 27-Nov-23 9:02:42 AM 'Title' is not in the correct format.
+Information: 27-Nov-23 9:03:05 AM 'Title' is not in the correct format.
+Information: 27-Nov-23 9:03:10 AM 'Title' must not be empty.
+'Title' is not in the correct format.

@@ -65,13 +65,18 @@ namespace NPaperless.Services
         /// <param name="services"></param>
         public void ConfigureServices(IServiceCollection services)
         {
-
+            using (ILoggerFactory factory = LoggerFactory.Create(builder => builder.AddConsole()))
+            {
+                ILogger logger = new PaperlessLogger("../logs");
+                logger.Log(LogLevel.Information, "PaperlessApi started");
+                services.AddSingleton(logger);
+            }
 
             /*
-            services.AddLogging(loggingBuilder =>
-            {
-                loggingBuilder.AddConsole();
-            });
+
+            using ILoggerFactory factory = LoggerFactory.Create(builder => builder.AddConsole());
+            ILogger logger = factory.CreateLogger("Program");
+            logger.Log(LogLevel.Information, "Starting PaperlessAPI");
             */
             // Add framework services.
 
@@ -191,7 +196,7 @@ namespace NPaperless.Services
                 app.UseHsts();
             }
 
-            app.UseHttpsRedirection();
+            //app.UseHttpsRedirection();
             app.UseDefaultFiles();
             app.UseStaticFiles();
             app.UseSwagger(c =>

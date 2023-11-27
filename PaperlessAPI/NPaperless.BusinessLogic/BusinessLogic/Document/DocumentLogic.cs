@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
 using Minio;
 using NPaperless.Models.Models;
 using NPaperless.Services.Models;
@@ -22,21 +23,21 @@ namespace NPaperless.Services.BusinessLogic
         private IValidator<Document> _validator;
         private readonly MinIOUploader _minioClient;
         private readonly RabbitMQClient _rabbitMQClient;
+        private readonly ILogger _logger;
 
 
-        public DocumentLogic(IDocumentRepo documentRepository, IValidator<Document> validator, IHostingEnvironment env)
+        public DocumentLogic(IDocumentRepo documentRepository, IValidator<Document> validator, IHostingEnvironment env, ILogger logger)
         {
             _rabbitMQClient = new RabbitMQClient(env);
             _minioClient = new MinIOUploader(env);
             _documentRepository = documentRepository;
             _validator = validator;
+            _logger = logger;
         }
 
         public async Task<Document> CreateOneDoc(IEnumerable<IFormFile> file)
         {
             Document document = new Document();
-
-            ValidationResult valResult = await _validator.ValidateAsync(document);
 
             var f = file.FirstOrDefault();
 
@@ -74,6 +75,11 @@ namespace NPaperless.Services.BusinessLogic
 
         public async Task<Document> UpdateOneDoc(uint id, Document document)
         {
+            ValidationResult valResult = await _validator.ValidateAsync(document);
+            if (!valResult.IsValid)
+            {
+                _logger.Log(LogLevel.Information, valResult.ToString());
+            }
             return await _documentRepository.UpdateOneDoc(id, document);
         }
     }

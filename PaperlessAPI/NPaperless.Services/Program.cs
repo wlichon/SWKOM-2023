@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 
 namespace NPaperless.Services
 {
@@ -27,8 +28,8 @@ namespace NPaperless.Services
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                   webBuilder.UseStartup<Startup>()
-                             .UseUrls("http://localhost:8081/");
+                    webBuilder.UseStartup<Startup>()
+                              .UseUrls("http://localhost:8081/");
                 });
     }
 }
