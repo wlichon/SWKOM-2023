@@ -23,11 +23,13 @@ namespace NPaperless.Services.Repositories.DocumentsRepos
 
         public async Task<Document> CreateOneDoc(Document document)
         {
-            _context.Documents.Add(document);
 
             try
             {
+                _context.Documents.Add(document);
                 await _context.SaveChangesAsync();
+
+                uint id = document.id;
             }
             catch (DbUpdateException ex)
             {

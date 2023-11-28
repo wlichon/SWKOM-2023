@@ -7,5 +7,6 @@ RUN apt install -y python3
 RUN apt install -y pip
 RUN pip install pika
 RUN pip install minio
+RUN pip install psycopg2-binary
 
 ENTRYPOINT ["python3", "app/consume.py"]

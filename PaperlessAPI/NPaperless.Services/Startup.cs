@@ -67,7 +67,7 @@ namespace NPaperless.Services
         {
             using (ILoggerFactory factory = LoggerFactory.Create(builder => builder.AddConsole()))
             {
-                ILogger logger = new PaperlessLogger("../logs");
+                ILogger logger = new PaperlessLogger("logs");
                 logger.Log(LogLevel.Information, "PaperlessApi started");
                 services.AddSingleton(logger);
             }

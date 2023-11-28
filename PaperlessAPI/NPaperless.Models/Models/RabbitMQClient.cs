@@ -29,13 +29,15 @@ namespace NPaperless.Models.Models
         
         }
 
-        public void PublishMessage(string fileName)
+        public void PublishMessage(string fileName, uint id) // id is the id of the row in the postgres db referencing the document
         {
             var connectionFactory = new RabbitMQ.Client.ConnectionFactory()
             {
                 UserName = _username,
                 Password = _password,
                 HostName = _endpoint
+           
+
             };
 
             try
@@ -56,9 +58,13 @@ namespace NPaperless.Models.Models
 
                 var body = Encoding.UTF8.GetBytes(message);
 
+                var properties = channel.CreateBasicProperties();
+
+                properties.MessageId = id.ToString();
+
                 channel.BasicPublish(exchange: string.Empty,
                                      routingKey: "paperless",
-                                     basicProperties: null,
+                                     basicProperties: properties,
                                      body: body);
                 
 

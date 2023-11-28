@@ -29,13 +29,23 @@ namespace NPaperless.Services.Models
             
             lock (_lock)
             {
-                string fullFilePath = Path.Combine(filePath, DateTime.Now.ToString("yyyy-MM-dd") + "_log.txt");
+                try
+                {
+                    string fullFilePath = Path.Combine(filePath, DateTime.Now.ToString("yyyy-MM-dd") + "_log.txt");
 
-                var n = Environment.NewLine;
-                string exc = "";
-                if (exception != null) exc = n + exception.GetType() + ": " + exception.Message + n + exception.StackTrace + n;
-                File.AppendAllText(fullFilePath, logLevel.ToString() + ": " + DateTime.Now.ToString() + " " + formatter(state, exception) + n + exc);
-                Console.WriteLine(logLevel.ToString() + ": " + DateTime.Now.ToString() + " " + formatter(state, exception) + n + exc);
+                    if (!File.Exists(fullFilePath))
+                    {
+                        using (FileStream fs = File.Create(fullFilePath));
+                    }
+                    var n = Environment.NewLine;
+                    string exc = "";
+                    if (exception != null) exc = n + exception.GetType() + ": " + exception.Message + n + exception.StackTrace + n;
+                    File.AppendAllText(fullFilePath, logLevel.ToString() + ": " + DateTime.Now.ToString() + " " + formatter(state, exception) + n + exc);
+                    Console.WriteLine(logLevel.ToString() + ": " + DateTime.Now.ToString() + " " + formatter(state, exception) + n + exc);
+
+                }catch(Exception ex) {
+                    Console.WriteLine(ex.Message + "\n logging disabled for this session");
+                }
 
             }
             

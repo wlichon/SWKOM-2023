@@ -44,13 +44,15 @@ namespace NPaperless.Services.BusinessLogic
             if (f == null)
                 return document;
 
-            _rabbitMQClient.PublishMessage(f.FileName);
+            await _documentRepository.CreateOneDoc(document);
 
             await _minioClient.UploadFileAsync(f);
 
+            _rabbitMQClient.PublishMessage(f.FileName, document.id);
 
 
-            return await _documentRepository.CreateOneDoc(document);
+
+            return document;
         }
 
         public async Task<Document> DeleteOneDoc(uint id)
