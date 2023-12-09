@@ -4,9 +4,23 @@ import time
 import subprocess
 import os
 import psycopg2
+from elasticsearch import Elasticsearch     #install this : "pip install elasticsearch"
+from datetime import datetime
 
 DOCUMENT_PATH = "/app/documents/"
 OUTPUT_PATH = "/app/gs-out/"
+
+def save_to_elasticsearch(document_id, title, content):
+    es = Elasticsearch('http://elasticsearch:9200')
+
+    doc = {
+        'document_id': document_id,
+        'title': title,
+        'content': content,
+    }
+    resp = es.index(index="swkom2023-documents", id=1, document=doc)
+    print(resp['result'])
+
 
 def callback(ch, method, properties, body):
     document_id = properties.message_id
@@ -36,11 +50,10 @@ def callback(ch, method, properties, body):
                 execute_tesseract()
                 try:
                     file_path = 'app/ocr.txt'
-
-                    # Open the file and read its content
                     with open(file_path, 'r') as file:
                         file_content = file.read()
                     save_to_postgres(document_id, file_content)
+                    save_to_elasticsearch(document_id, fileName, file_content)
                 except OSError:
                     print("failed to store content in db")
 
