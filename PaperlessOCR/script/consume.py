@@ -18,7 +18,7 @@ def save_to_elasticsearch(document_id, title, content):
         'title': title,
         'content': content,
     }
-    resp = es.index(index="swkom2023-documents", id=1, document=doc)
+    resp = es.index(index="swkom2023-documents", id=document_id, document=doc)
     print(resp['result'])
 
 
