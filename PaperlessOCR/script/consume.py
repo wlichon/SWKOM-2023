@@ -21,13 +21,9 @@ def save_to_elasticsearch(document_id, title, content):
         'content': content,
     }
     resp = es.index(index="swkom2023-documents", id=document_id, document=doc)
-<<<<<<< Updated upstream
-    print(resp['result'])
-=======
     print("Elasticsearch response: ", resp)
     print("print this stuff too: ", document_id, ", ", title, ", ", content)
 
->>>>>>> Stashed changes
 
 
 def callback(ch, method, properties, body):
