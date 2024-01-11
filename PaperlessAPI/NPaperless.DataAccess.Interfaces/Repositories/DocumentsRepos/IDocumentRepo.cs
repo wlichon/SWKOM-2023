@@ -16,6 +16,6 @@ namespace NPaperless.Services.Repositories.DocumentsRepos
 
         public Task<Document> CreateOneDoc(Document document);
 
- 
+
     }
 }

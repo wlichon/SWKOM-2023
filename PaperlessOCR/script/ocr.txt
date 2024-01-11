@@ -1,18 +1,14 @@
-This is a sample document to test the PDF Image+Text OCR Engine.
-This is a sample document to test the PDF Image+Text OCR Engine.
-This is a sample document to test the PDF Image+Text OCR Engine.
-This is a sample document to test the PDF Image+Text OCR Engine.
-This is a sample document to test the PDF Image+Text OCR Engine.
-This is a sample document to test the PDF Image+Text OCR Engine.
-This is a sample document to test the PDF Imaget+Text OCR Engine.
-This is a sample document to test the PDF Imaget+Text OCR Engine.
-This is a sample document to test the PDF Image+Text OCR Engine.
-This is a sample document to test the PDF Imaget+Text OCR Engine.
-This is a sample document to test the PDF Image+Text OCR Engine.
-This is a sample document to test the PDF Imaget+Text OCR Engine.
-This is a sample document to test the PDF Imaget+Text OCR Engine.
-This is a sample document to test the PDF Image+Text OCR Engine.
-This is a sample document to test the PDF Image+Text OCR Engine.
+Paperless is a Document management system for archiving documents in a FileStore, with
+automatic OCR (queue for OC-recognition), tagging and full text search (ElasticSearch).
 
-This is a sample document to test the PDF Imaget+Text OCR Engine.
+Paperless Frontend ° https://docs.paperless-ngx.com/ « Paperless-ngx is a
+communitysupported open-source document management system that transforms your
+physical documents into a searchable online archive so you can keep, well, less paper.
+
+Some assumptions * Paperless-ngx used as Frontend ° Investigate the API and Paperless-
+ngx specificas with a proxy * Extend REST-Server to provide paperless-ngx needs
+
+Use cases 1. Upload document * Automatically performs OCR = Is indexed for full-text search
+in ElasticSearch 2. Search for a document « With fuzzy search in ElasticSearch 3. Manage
+documents « Update, delete, metadata » Further Usecases optional
 

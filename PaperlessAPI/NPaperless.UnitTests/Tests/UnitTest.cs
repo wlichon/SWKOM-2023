@@ -1,5 +1,6 @@
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using Moq;
 using NPaperless.Services;
 using NPaperless.Services.Data;
@@ -43,24 +44,24 @@ namespace NPaperless.DataAccess.Tests
         {
             var docDto = new DocumentDto
             {
-                Correspondent = 2,
-                DocumentType = 1,
-                Title = "Document",
-                Tags = new uint[] { 1, 2, 3 },
-                Created = DateTime.MinValue,
-                Added = DateTime.MaxValue
+                correspondent = 2,
+                documentType = 1,
+                title = "Document",
+                tags = new uint[] { 1, 2, 3 },
+                created = DateTime.MinValue,
+                added = DateTime.MaxValue
             };
 
             var doc = _mapper.Map<Document>(docDto);
 
             Assert.IsNotNull(doc);
 
-            Assert.That(doc.Correspondent == docDto.Correspondent);
-            Assert.That(doc.DocumentType == docDto.DocumentType);
-            Assert.That(doc.Title == docDto.Title);
-            Assert.That(doc.Tags.SequenceEqual(docDto.Tags));
-            Assert.That(doc.Created == docDto.Created);
-            Assert.That(doc.Added == docDto.Added);
+            Assert.That(doc.correspondent == docDto.correspondent);
+            Assert.That(doc.documentType == docDto.documentType);
+            Assert.That(doc.title == docDto.title);
+            Assert.That(doc.tags.SequenceEqual(docDto.tags));
+            Assert.That(doc.created == docDto.created);
+            Assert.That(doc.added == docDto.added);
 
         }
 
@@ -71,24 +72,24 @@ namespace NPaperless.DataAccess.Tests
         {
             var doc = new Document
             {
-                Correspondent = 2,
-                DocumentType = 1,
-                Title = "Document",
-                Tags = new uint[] { 1, 2, 3 },
-                Created = DateTime.MinValue,
-                Added = DateTime.MaxValue
+                correspondent = 2,
+                documentType = 1,
+                title = "Document",
+                tags = new uint[] { 1, 2, 3 },
+                created = DateTime.MinValue,
+                added = DateTime.MaxValue
             };
 
             var docDto = _mapper.Map<DocumentDto>(doc);
 
             Assert.IsNotNull(doc);
 
-            Assert.That(doc.Correspondent == docDto.Correspondent);
-            Assert.That(doc.DocumentType == docDto.DocumentType);
-            Assert.That(doc.Title == docDto.Title);
-            Assert.That(doc.Tags.SequenceEqual(docDto.Tags));
-            Assert.That(doc.Created == docDto.Created);
-            Assert.That(doc.Added == docDto.Added);
+            Assert.That(doc.correspondent == docDto.correspondent);
+            Assert.That(doc.documentType == docDto.documentType);
+            Assert.That(doc.title == docDto.title);
+            Assert.That(doc.tags.SequenceEqual(docDto.tags));
+            Assert.That(doc.created == docDto.created);
+            Assert.That(doc.added == docDto.added);
 
         }
     }
@@ -130,12 +131,12 @@ namespace NPaperless.DataAccess.Tests
 
             var docDto = new DocumentDto
             {
-                Correspondent = 2,
-                DocumentType = 1,
-                Title = "Document",
-                Tags = new uint[] { 1, 2, 3 },
-                Created = DateTime.MinValue,
-                Added = DateTime.MaxValue
+                correspondent = 2,
+                documentType = 1,
+                title = "Document",
+                tags = new uint[] { 1, 2, 3 },
+                created = DateTime.MinValue,
+                added = DateTime.MaxValue
             };
 
             var doc = _docRepo.CreateOneDoc(docDto);
@@ -153,30 +154,30 @@ namespace NPaperless.DataAccess.Tests
             var data = new List<Document>()
             {
                 new Document {
-                    Correspondent = 2,
-                    DocumentType = 1,
-                    Title = "Document1",
-                    Tags = new uint[] { 1, 2, 3 },
-                    Created = DateTime.MinValue,
-                    Added = DateTime.MaxValue
+                    correspondent = 2,
+                    documentType = 1,
+                    title = "Document1",
+                    tags = new uint[] { 1, 2, 3 },
+                    created = DateTime.MinValue,
+                    added = DateTime.MaxValue
                 },
                 new Document
                 {
-                    Correspondent = 3,
-                    DocumentType = 2,
-                    Title = "Document2",
-                    Tags = new uint[] { 4, 5, 6 },
-                    Created = DateTime.MinValue,
-                    Added = DateTime.MaxValue
+                    correspondent = 3,
+                    documentType = 2,
+                    title = "Document2",
+                    tags = new uint[] { 4, 5, 6 },
+                    created = DateTime.MinValue,
+                    added = DateTime.MaxValue
                 },
                 new Document
                 {
-                    Correspondent = 1,
-                    DocumentType = 4,
-                    Title = "Document3",
-                    Tags = new uint[] { 7, 8, 9 },
-                    Created = DateTime.MinValue,
-                    Added = DateTime.MaxValue
+                    correspondent = 1,
+                    documentType = 4,
+                    title = "Document3",
+                    tags = new uint[] { 7, 8, 9 },
+                    created = DateTime.MinValue,
+                    added = DateTime.MaxValue
                 }
             }.AsQueryable();
 

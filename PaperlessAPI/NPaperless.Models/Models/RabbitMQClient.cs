@@ -66,7 +66,7 @@ namespace NPaperless.Models.Models
                                      routingKey: "paperless",
                                      basicProperties: properties,
                                      body: body);
-                
+
 
             }
             catch(Exception ex)

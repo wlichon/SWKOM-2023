@@ -12,6 +12,8 @@ namespace NPaperless.Services.BusinessLogic
 
         public Task<Document> GetOneDoc(uint id);
 
+        public Task<List<Document>> SearchDocs(string searchTerm);
+
         public Task<Document> UpdateOneDoc(uint id, Document document);
 
         public Task<Document> DeleteOneDoc(uint id);

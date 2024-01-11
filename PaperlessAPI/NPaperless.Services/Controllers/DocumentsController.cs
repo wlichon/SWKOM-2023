@@ -59,6 +59,32 @@ public partial class DocumentsController : ControllerBase
         return Ok(listDocs);
     }
 
+    
+
+    [HttpGet("search", Name = "SearchDocuments")]
+    public async Task<IActionResult> SearchDocuments([FromQuery] string searchTerm)
+    {
+        try
+        {
+            var docs = await _documentLogic.SearchDocs(searchTerm);
+            var listDocs = new ListResponse<DocumentDto>()
+            {
+                Count = docs.Count,
+                Next = null,
+                Previous = null,
+                Results = _mapper.Map<List<Document>, List<DocumentDto>>(docs)
+            };
+
+            return Ok(listDocs);
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "An error occurred during document search.");
+            return StatusCode(500);
+        }
+    }
+
+
     [HttpGet("{id}", Name = "GetDocument")]
     public async Task<IActionResult> GetDocument([FromRoute] uint id)
     {

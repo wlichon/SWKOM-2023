@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\wikto\\Desktop\\FH\\5-semester\\SWKOM\\Paperless-git\\PaperlessAPI\\NPaperless.BusinessLogic\\NPaperless.BusinessLogic.csproj": {}
+    "C:\\Users\\dario\\OneDrive\\Desktop\\SWKOM-Final\\PaperlessAPI\\NPaperless.BusinessLogic\\NPaperless.BusinessLogic.csproj": {}
   },
   "projects": {
-    "C:\\Users\\wikto\\Desktop\\FH\\5-semester\\SWKOM\\Paperless-git\\PaperlessAPI\\NPaperless.BusinessLogic\\NPaperless.BusinessLogic.csproj": {
+    "C:\\Users\\dario\\OneDrive\\Desktop\\SWKOM-Final\\PaperlessAPI\\NPaperless.BusinessLogic\\NPaperless.BusinessLogic.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\wikto\\Desktop\\FH\\5-semester\\SWKOM\\Paperless-git\\PaperlessAPI\\NPaperless.BusinessLogic\\NPaperless.BusinessLogic.csproj",
+        "projectUniqueName": "C:\\Users\\dario\\OneDrive\\Desktop\\SWKOM-Final\\PaperlessAPI\\NPaperless.BusinessLogic\\NPaperless.BusinessLogic.csproj",
         "projectName": "NPaperless.BusinessLogic",
-        "projectPath": "C:\\Users\\wikto\\Desktop\\FH\\5-semester\\SWKOM\\Paperless-git\\PaperlessAPI\\NPaperless.BusinessLogic\\NPaperless.BusinessLogic.csproj",
-        "packagesPath": "C:\\Users\\wikto\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\wikto\\Desktop\\FH\\5-semester\\SWKOM\\Paperless-git\\PaperlessAPI\\NPaperless.BusinessLogic\\obj\\",
+        "projectPath": "C:\\Users\\dario\\OneDrive\\Desktop\\SWKOM-Final\\PaperlessAPI\\NPaperless.BusinessLogic\\NPaperless.BusinessLogic.csproj",
+        "packagesPath": "C:\\Users\\dario\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\dario\\OneDrive\\Desktop\\SWKOM-Final\\PaperlessAPI\\NPaperless.BusinessLogic\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\wikto\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\dario\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -22,17 +26,18 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\wikto\\Desktop\\FH\\5-semester\\SWKOM\\Paperless-git\\PaperlessAPI\\NPaperless.DataAccess.Interfaces\\NPaperless.DataAccess.Interfaces.csproj": {
-                "projectPath": "C:\\Users\\wikto\\Desktop\\FH\\5-semester\\SWKOM\\Paperless-git\\PaperlessAPI\\NPaperless.DataAccess.Interfaces\\NPaperless.DataAccess.Interfaces.csproj"
+              "C:\\Users\\dario\\OneDrive\\Desktop\\SWKOM-Final\\PaperlessAPI\\NPaperless.DataAccess.Interfaces\\NPaperless.DataAccess.Interfaces.csproj": {
+                "projectPath": "C:\\Users\\dario\\OneDrive\\Desktop\\SWKOM-Final\\PaperlessAPI\\NPaperless.DataAccess.Interfaces\\NPaperless.DataAccess.Interfaces.csproj"
               },
-              "C:\\Users\\wikto\\Desktop\\FH\\5-semester\\SWKOM\\Paperless-git\\PaperlessAPI\\NPaperless.Models\\NPaperless.Models.csproj": {
-                "projectPath": "C:\\Users\\wikto\\Desktop\\FH\\5-semester\\SWKOM\\Paperless-git\\PaperlessAPI\\NPaperless.Models\\NPaperless.Models.csproj"
+              "C:\\Users\\dario\\OneDrive\\Desktop\\SWKOM-Final\\PaperlessAPI\\NPaperless.Models\\NPaperless.Models.csproj": {
+                "projectPath": "C:\\Users\\dario\\OneDrive\\Desktop\\SWKOM-Final\\PaperlessAPI\\NPaperless.Models\\NPaperless.Models.csproj"
               }
             }
           }
@@ -72,21 +77,25 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.103\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\wikto\\Desktop\\FH\\5-semester\\SWKOM\\Paperless-git\\PaperlessAPI\\NPaperless.DataAccess.Entities\\NPaperless.DataAccess.Entities.csproj": {
+    "C:\\Users\\dario\\OneDrive\\Desktop\\SWKOM-Final\\PaperlessAPI\\NPaperless.DataAccess.Entities\\NPaperless.DataAccess.Entities.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\wikto\\Desktop\\FH\\5-semester\\SWKOM\\Paperless-git\\PaperlessAPI\\NPaperless.DataAccess.Entities\\NPaperless.DataAccess.Entities.csproj",
+        "projectUniqueName": "C:\\Users\\dario\\OneDrive\\Desktop\\SWKOM-Final\\PaperlessAPI\\NPaperless.DataAccess.Entities\\NPaperless.DataAccess.Entities.csproj",
         "projectName": "NPaperless.DataAccess.Entities",
-        "projectPath": "C:\\Users\\wikto\\Desktop\\FH\\5-semester\\SWKOM\\Paperless-git\\PaperlessAPI\\NPaperless.DataAccess.Entities\\NPaperless.DataAccess.Entities.csproj",
-        "packagesPath": "C:\\Users\\wikto\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\wikto\\Desktop\\FH\\5-semester\\SWKOM\\Paperless-git\\PaperlessAPI\\NPaperless.DataAccess.Entities\\obj\\",
+        "projectPath": "C:\\Users\\dario\\OneDrive\\Desktop\\SWKOM-Final\\PaperlessAPI\\NPaperless.DataAccess.Entities\\NPaperless.DataAccess.Entities.csproj",
+        "packagesPath": "C:\\Users\\dario\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\dario\\OneDrive\\Desktop\\SWKOM-Final\\PaperlessAPI\\NPaperless.DataAccess.Entities\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\wikto\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\dario\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -94,14 +103,15 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\wikto\\Desktop\\FH\\5-semester\\SWKOM\\Paperless-git\\PaperlessAPI\\NPaperless.Models\\NPaperless.Models.csproj": {
-                "projectPath": "C:\\Users\\wikto\\Desktop\\FH\\5-semester\\SWKOM\\Paperless-git\\PaperlessAPI\\NPaperless.Models\\NPaperless.Models.csproj"
+              "C:\\Users\\dario\\OneDrive\\Desktop\\SWKOM-Final\\PaperlessAPI\\NPaperless.Models\\NPaperless.Models.csproj": {
+                "projectPath": "C:\\Users\\dario\\OneDrive\\Desktop\\SWKOM-Final\\PaperlessAPI\\NPaperless.Models\\NPaperless.Models.csproj"
               }
             }
           }
@@ -143,21 +153,25 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.103\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\wikto\\Desktop\\FH\\5-semester\\SWKOM\\Paperless-git\\PaperlessAPI\\NPaperless.DataAccess.Interfaces\\NPaperless.DataAccess.Interfaces.csproj": {
+    "C:\\Users\\dario\\OneDrive\\Desktop\\SWKOM-Final\\PaperlessAPI\\NPaperless.DataAccess.Interfaces\\NPaperless.DataAccess.Interfaces.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\wikto\\Desktop\\FH\\5-semester\\SWKOM\\Paperless-git\\PaperlessAPI\\NPaperless.DataAccess.Interfaces\\NPaperless.DataAccess.Interfaces.csproj",
+        "projectUniqueName": "C:\\Users\\dario\\OneDrive\\Desktop\\SWKOM-Final\\PaperlessAPI\\NPaperless.DataAccess.Interfaces\\NPaperless.DataAccess.Interfaces.csproj",
         "projectName": "NPaperless.DataAccess.Interfaces",
-        "projectPath": "C:\\Users\\wikto\\Desktop\\FH\\5-semester\\SWKOM\\Paperless-git\\PaperlessAPI\\NPaperless.DataAccess.Interfaces\\NPaperless.DataAccess.Interfaces.csproj",
-        "packagesPath": "C:\\Users\\wikto\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\wikto\\Desktop\\FH\\5-semester\\SWKOM\\Paperless-git\\PaperlessAPI\\NPaperless.DataAccess.Interfaces\\obj\\",
+        "projectPath": "C:\\Users\\dario\\OneDrive\\Desktop\\SWKOM-Final\\PaperlessAPI\\NPaperless.DataAccess.Interfaces\\NPaperless.DataAccess.Interfaces.csproj",
+        "packagesPath": "C:\\Users\\dario\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\dario\\OneDrive\\Desktop\\SWKOM-Final\\PaperlessAPI\\NPaperless.DataAccess.Interfaces\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\wikto\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\dario\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -165,14 +179,15 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\wikto\\Desktop\\FH\\5-semester\\SWKOM\\Paperless-git\\PaperlessAPI\\NPaperless.DataAccess.Entities\\NPaperless.DataAccess.Entities.csproj": {
-                "projectPath": "C:\\Users\\wikto\\Desktop\\FH\\5-semester\\SWKOM\\Paperless-git\\PaperlessAPI\\NPaperless.DataAccess.Entities\\NPaperless.DataAccess.Entities.csproj"
+              "C:\\Users\\dario\\OneDrive\\Desktop\\SWKOM-Final\\PaperlessAPI\\NPaperless.DataAccess.Entities\\NPaperless.DataAccess.Entities.csproj": {
+                "projectPath": "C:\\Users\\dario\\OneDrive\\Desktop\\SWKOM-Final\\PaperlessAPI\\NPaperless.DataAccess.Entities\\NPaperless.DataAccess.Entities.csproj"
               }
             }
           }
@@ -186,6 +201,12 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
+          "dependencies": {
+            "Elasticsearch.Net": {
+              "target": "Package",
+              "version": "[7.17.5, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -202,21 +223,25 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.103\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\wikto\\Desktop\\FH\\5-semester\\SWKOM\\Paperless-git\\PaperlessAPI\\NPaperless.Models\\NPaperless.Models.csproj": {
+    "C:\\Users\\dario\\OneDrive\\Desktop\\SWKOM-Final\\PaperlessAPI\\NPaperless.Models\\NPaperless.Models.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\wikto\\Desktop\\FH\\5-semester\\SWKOM\\Paperless-git\\PaperlessAPI\\NPaperless.Models\\NPaperless.Models.csproj",
+        "projectUniqueName": "C:\\Users\\dario\\OneDrive\\Desktop\\SWKOM-Final\\PaperlessAPI\\NPaperless.Models\\NPaperless.Models.csproj",
         "projectName": "NPaperless.Models",
-        "projectPath": "C:\\Users\\wikto\\Desktop\\FH\\5-semester\\SWKOM\\Paperless-git\\PaperlessAPI\\NPaperless.Models\\NPaperless.Models.csproj",
-        "packagesPath": "C:\\Users\\wikto\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\wikto\\Desktop\\FH\\5-semester\\SWKOM\\Paperless-git\\PaperlessAPI\\NPaperless.Models\\obj\\",
+        "projectPath": "C:\\Users\\dario\\OneDrive\\Desktop\\SWKOM-Final\\PaperlessAPI\\NPaperless.Models\\NPaperless.Models.csproj",
+        "packagesPath": "C:\\Users\\dario\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\dario\\OneDrive\\Desktop\\SWKOM-Final\\PaperlessAPI\\NPaperless.Models\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\wikto\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\dario\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -224,6 +249,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -246,6 +272,10 @@
               "target": "Package",
               "version": "[12.0.1, )"
             },
+            "Elasticsearch.Net": {
+              "target": "Package",
+              "version": "[7.17.5, )"
+            },
             "Microsoft.AspNetCore.Http.Abstractions": {
               "target": "Package",
               "version": "[2.2.0, )"
@@ -257,6 +287,10 @@
             "Minio": {
               "target": "Package",
               "version": "[6.0.1, )"
+            },
+            "Nest": {
+              "target": "Package",
+              "version": "[7.17.5, )"
             },
             "RabbitMQ.Client": {
               "target": "Package",
@@ -279,7 +313,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.103\\RuntimeIdentifierGraph.json"
         }
       }
     }

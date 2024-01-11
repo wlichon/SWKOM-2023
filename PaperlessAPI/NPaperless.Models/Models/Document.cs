@@ -3,6 +3,21 @@ using System.Text.Json.Serialization;
 
 namespace NPaperless.Services.Models;
 
+/*public interface IDocument
+{
+    string Title { get; set; }
+    string Content { get; set; }
+}
+
+public partial class Document : IDocument
+{
+    // ... other properties and methods ...
+
+    // Implement properties from the interface
+    public string Title { get; set; }
+    public string Content { get; set; }
+}*/
+
 public partial class Document
 {
     [JsonPropertyName("id")]

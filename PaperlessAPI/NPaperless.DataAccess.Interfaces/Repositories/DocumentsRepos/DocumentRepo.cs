@@ -18,7 +18,7 @@ namespace NPaperless.Services.Repositories.DocumentsRepos
         public DocumentRepo(DataContext context, ILogger logger)
         {
             _context = context;
-            _logger = logger;   
+            _logger = logger;
         }
 
         public async Task<Document> CreateOneDoc(Document document)

@@ -4,8 +4,10 @@ import time
 import subprocess
 import os
 import psycopg2
-from elasticsearch import Elasticsearch     #install this : "pip install elasticsearch"
+from elasticsearch import Elasticsearch     #install this in dockerfile PaperlessOCR : "pip install elasticsearch"
 from datetime import datetime
+from docx import Document                   #install this in dockerfile PaperlessOCR: "pip install python-docx"
+
 
 DOCUMENT_PATH = "/app/documents/"
 OUTPUT_PATH = "/app/gs-out/"
@@ -19,7 +21,13 @@ def save_to_elasticsearch(document_id, title, content):
         'content': content,
     }
     resp = es.index(index="swkom2023-documents", id=document_id, document=doc)
+<<<<<<< Updated upstream
     print(resp['result'])
+=======
+    print("Elasticsearch response: ", resp)
+    print("print this stuff too: ", document_id, ", ", title, ", ", content)
+
+>>>>>>> Stashed changes
 
 
 def callback(ch, method, properties, body):
@@ -43,19 +51,37 @@ def callback(ch, method, properties, body):
         minio_client.fget_object(bucket_name, fileName, full_path)
         print(f"Downloaded PDF file: {fileName}")
         file_suffix = os.path.splitext(fileName)[1]
-        print(file_suffix)
-        if file_suffix == ".pdf":
+        print("$File suffix: ", file_suffix)
+        if file_suffix in {".pdf", ".txt", ".docx"}:
             try:
-                convert_pdf_to_image(full_path)
-                execute_tesseract()
-                try:
-                    file_path = 'app/ocr.txt'
-                    with open(file_path, 'r') as file:
-                        file_content = file.read()
-                    save_to_postgres(document_id, file_content)
+                if file_suffix == ".pdf":
+                    convert_pdf_to_image(full_path)
+                    execute_tesseract()
+                    try:
+                        file_path = 'app/ocr.txt'
+                        with open(file_path, 'r') as file:
+                            file_content = file.read()
+                        save_to_elasticsearch(document_id, fileName, file_content)
+                        print("saved to elastic")
+                        save_to_postgres(document_id, file_content, fileName)
+                        print("saved to postgre")
+
+                    except OSError:
+                        print("failed to store content in db")
+                        
+                elif file_suffix == ".docx":
+                    file_content = convert_docx_to_text(full_path)
                     save_to_elasticsearch(document_id, fileName, file_content)
-                except OSError:
-                    print("failed to store content in db")
+                    print("saved to elastic")
+                    save_to_postgres(document_id, file_content, fileName)
+                    print("saved to postgre")
+
+                elif file_suffix == ".txt":
+                    file_content = convert_txt_to_text(full_path)
+                    save_to_elasticsearch(document_id, fileName, file_content)
+                    print("saved to elastic")
+                    save_to_postgres(document_id, file_content, fileName)
+                    print("saved to postgre")
 
             except OSError:
                 print("Failed to execute gs or tesseract")
@@ -81,8 +107,20 @@ def convert_pdf_to_image(full_path):
     p = subprocess.Popen(ghostscript_command, shell=True)
     p_status = p.wait()
 
+#############this new
+def convert_docx_to_text(docx_path):
+    doc = Document(docx_path)
+    text = "\n".join([paragraph.text for paragraph in doc.paragraphs])
+    return text
 
-def save_to_postgres(document_id, content):
+def convert_txt_to_text(txt_path):
+    with open(txt_path, 'r') as file:
+        text = file.read()
+    return text
+#############
+
+
+def save_to_postgres(document_id, content, title):
     connection = psycopg2.connect(
         host="local_pgdb",
         database="admin",
@@ -91,7 +129,7 @@ def save_to_postgres(document_id, content):
         port=5432
     )
     cursor = connection.cursor()
-    cursor.execute('UPDATE "Documents" SET content = %s WHERE id = %s', (content, document_id))
+    cursor.execute('UPDATE "Documents" SET title = %s, content = %s WHERE id = %s', (title, content, document_id))
     connection.commit()
     cursor.close()
     connection.close()

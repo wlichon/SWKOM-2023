@@ -9,5 +9,6 @@ RUN pip install pika
 RUN pip install minio
 RUN pip install psycopg2-binary
 RUN pip install elasticsearch
+RUN pip install python-docx
 
 ENTRYPOINT ["python3", "app/consume.py"]
