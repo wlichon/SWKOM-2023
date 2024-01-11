@@ -28,7 +28,7 @@ namespace PaperlessTests
         [Fact]
         public async TaskAlias SubmitNewDocumentIntegrationTest()
         {
-            string filePath = "TestFiles/testFile.pdf";
+            string filePath = "../../../TestFiles/testFile.pdf";
 
             if (!File.Exists(filePath))
             {
@@ -98,7 +98,7 @@ namespace PaperlessTests
         [Fact]
         public async TaskAlias SubmitAnotherDocumentIntegrationTest()
         {
-            string filePath = "TestFiles/swkomData.pdf";
+            string filePath = "../../../TestFiles/swkomData.pdf";
 
             if (!File.Exists(filePath))
             {
